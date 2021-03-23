@@ -1,5 +1,4 @@
 ---
-layout: page
 title: About Chris Brooks
 permalink: /about/
 ---
