@@ -1,0 +1,106 @@
+---
+layout: post
+title: Joe Long on Indigo Technology Roadmap
+date: 2003-10-30 09:50:21.000000000 -07:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1607743150;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2003/10/30/joe-long-on-indigo-technology-roadmap-html/"
+excerpt: ' Joe Long from Microsoft gave a nice talk on the technology roadmap for
+  Indigo, with a nice dose of prescriptive guidance for those of us who need to do
+  distributed application development today but want to be mindful of the future. 
+  The talk was framed around this question: how do we support incremental upgrades
+  of clients and/or servers as we move to Indigo?   Joe suggested two approaches to
+  this problem:    We can teach the existing infrastructure new protocols.  For example,
+  if I have a component written that gets deployed and accessed via Enterprise Services
+  (COM+), Microsoft can shim in some new bits under the hood to teach enterprise services
+  how to talk via Indigo.  We can teach the new infrastructure about the existing
+  legacy protocols.  For example, if I write a new Indigo service, it could fall back
+  in some fashion to talk via DCOM.   Microsoft is opting for the first approach -
+  move the underlying protocols forward and don''t look back.  This does place some
+  constraints on what you do today and what might or might not work in the future. 
+  Joe covered several of the common cases, which I''ll briefly discuss here.  COM+
+  Binary Interoperability   Interesting stuff here - the goal is to not force a recompile
+  of clients or servers by utilizing a bridged service environment.  There are a few
+  requirements for this to work though:    Servers must have a type library for metadata  Components
+  must be COM+ / Enterprise Services.  Sorry, your ATL DCOM NT Service won''t magically
+  be accessible via Indigo.  You must be explicit about interface types when used
+  as parameters, i.e., don''t pass around IUnknown references.  Avoid explicit use
+  of COSERVERINFO.  Custom proxy/stub marshalling will not be supported.  MSMQ Binary
+  Interoperability   I was a bit confused on this point, but it appears that Indigo
+  will provide Indigo compatibility by automatically exposing MSMQ servers via web
+  services.   ASMX Web Services   No real concerns about interoperability here, since
+  this is SOAP/XML.  .NET Remoting and WSE   Out of luck - don''t expect much help
+  here.  Migrating Code to Indigo   I won''t go into extensive detail here - you can
+  check out the presentation yourself if you would like more details.  The gist of
+  changes revolves around instantiation of servers and proxies - everything else can
+  pretty much remain the same if you are writing ASMX web services or Enterprise Services
+  components today.  .NET remoting is mostly orphaned, though porting won''t be too
+  difficult.  The use of "new" to create client proxies will not be supported.  Where
+  Should We Host Server Components?   I asked this question at the end of the talk. 
+  In the Longhorn world, as in today, there are two primary hosts for components -
+  IIS / ASP.NET, and Enterprise Services.  Joe''s recommendation was to use ASMX web
+  services by default and host in IIS.  If you need Enterprise Services, go ahead
+  and use it but opt for the library component model and still host in IIS if at all
+  possible. '
+---
+<p>Joe Long from Microsoft gave a nice talk on the technology roadmap for Indigo,<br />
+with a nice dose of prescriptive guidance for those of us who need to do<br />
+distributed application development today but want to be mindful of the<br />
+future. The talk was framed around this question: how do we support<br />
+incremental upgrades of clients and/or servers as we move to Indigo?</p>
+<p>Joe suggested two approaches to this problem:</p>
+<ul>
+<li>We can teach the existing infrastructure new protocols. For example, if I have a component written that gets deployed and accessed via Enterprise Services (COM+), Microsoft can shim in some new bits under the hood to teach enterprise services how to talk via Indigo.</li>
+<li>We can teach the new infrastructure about the existing legacy protocols. For example, if I write a new Indigo service, it could fall back in some fashion to talk via DCOM.</li>
+</ul>
+<p>Microsoft is opting for the first approach - move the underlying protocols<br />
+forward and don't look back. This does place some constraints on what you do<br />
+today and what might or might not work in the future. Joe covered several of<br />
+the common cases, which I'll briefly discuss here.</p>
+<h3>COM+ Binary Interoperability</h3>
+<p>Interesting stuff here - the goal is to not force a recompile of clients or<br />
+servers by utilizing a bridged service environment. There are a few<br />
+requirements for this to work though:</p>
+<ul>
+<li>Servers must have a type library for metadata</li>
+<li>Components must be COM+ / Enterprise Services. Sorry, your ATL DCOM NT Service won't magically be accessible via Indigo.</li>
+<li>You must be explicit about interface types when used as parameters, i.e., don't pass around IUnknown references.</li>
+<li>Avoid explicit use of COSERVERINFO.</li>
+<li>Custom proxy/stub marshalling will not be supported.</li>
+</ul>
+<h3>MSMQ Binary Interoperability</h3>
+<p>I was a bit confused on this point, but it appears that Indigo will provide<br />
+Indigo compatibility by automatically exposing MSMQ servers via web services.</p>
+<h3>ASMX Web Services</h3>
+<p>No real concerns about interoperability here, since this is SOAP/XML.</p>
+<h3>.NET Remoting and WSE</h3>
+<p>Out of luck - don't expect much help here.</p>
+<h3>Migrating Code to Indigo</h3>
+<p>I won't go into extensive detail here - you can <a href="http://www.gotdotnet.com/team/PDC/4281/WSV203.ppt">check out the presentation<br />
+yourself</a> if you would like<br />
+more details. The gist of changes revolves around instantiation of servers and<br />
+proxies - everything else can pretty much remain the same if you are writing<br />
+ASMX web services or Enterprise Services components today. .NET remoting is<br />
+mostly orphaned, though porting won't be too difficult. The use of "new" to<br />
+create client proxies will not be supported.</p>
+<h3>Where Should We Host Server Components?</h3>
+<p>I asked this question at the end of the talk. In the Longhorn world, as in<br />
+today, there are two primary hosts for components - IIS / ASP.NET, and<br />
+Enterprise Services. Joe's recommendation was to use ASMX web services by<br />
+default and host in IIS. If you need Enterprise Services, go ahead and use it<br />
+but opt for the library component model and still host in IIS if at all<br />
+possible.</p>

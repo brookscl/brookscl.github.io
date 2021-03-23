@@ -1,0 +1,105 @@
+---
+layout: post
+title: Ruby on Rails
+date: 2004-11-12 16:19:20.000000000 -07:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1604196849;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2004/11/12/ruby-on-rails-html/"
+excerpt: 'OK, let''s geek out in the technical way for a bit.  Patrick mentioned that
+  I pointed him to Ruby, and more specifically to Ruby on Rails.  I''m quickly falling
+  in love (in a geek sort of way) with the language and framework.  I''ve been a long-time
+  fan of Python (check out this discussion on Python vs. Ruby), but there''s something
+  about Ruby that just clicks for me. Side note: Patrick, you asked about doing web
+  services / SOAP on Ruby.  Check out soap4r.  Looks like a decent framework and some
+  of the basic tests seem to work. Other side note: When you search for ruby “web
+  services” you get tons of hits for Sam Ruby.  Best to exclude Sam when looking for
+  more info on this topic. Rails is a model-view-controller (MVC) framework that strives
+  for simplicity, elegance, and “Principle of Least Surprise”.  The most interesting
+  component of Rails is ActiveRecord, the simplest object-relational mapping framework
+  I''ve ever seen. I''m doing a personal project to aggregate boardgame pricing data
+  from various online vendors.  To do this, I need to have a master database of games
+  that I can easily keep up to date.  Enter BoardGameGeek - I''d love it if they would
+  offer a web services interface, but for now I''ll have to resort to screen-scraping
+  their HTML output. Now, for some code.  First, some SQL DDL to define the games
+  table: CREATE TABLE games (  id int(10) unsigned NOT NULL autoincrement,  title
+  varchar(50) NOT NULL default '''',  boardgamegeekID int(10) NOT NULL default ''0'', 
+  publisher varchar(255) NOT NULL default '''',  updateddate datetime NOT NULL default
+  ''0000-00-00 00:00:00'',  PRIMARY KEY  (id),  KEY title (title)) TYPE=MyISAM; I
+  then use a Rails script to generate the model, which is a class representation of
+  this table structure.  Rails uses Ruby reflection extensively, so the code for the
+  model is almost laughingly simple: require ''activerecord''class Game < ActiveRecord::Baseend
+  Yes, that''s it.  ActiveRecord will automatically use metadata from the database
+  to determine what attributes to provide, how to generate SQL for CRUD operations,
+  etc. I''ll talk about the controller / view side of things later, but for now I''ll
+  stick to showing some the code used to scrape BGG and populate the database: require
+  ''open-uri''require ''config/environments/production''require ''app/models/game''yearmin
+  = ''1960''yearmax = ''2010''puts "Searching BoardGameGeek to harvest games from
+  " + yearmin + " to " + yearmaxsearchURI = "http://www.boardgamegeek.com/search.php3?yearmin="
+  + yearmin + "&yearmax=" + yearmaxopen(searchURI) do |f|  results = f.read.scan(/A.href="/game/(.*?)">(.*?)</) 
+  for row in results    g = Game.new    g.title = row[1]    g.boardgamegeekID = row[0]   
+  g.publisher = '' ''    g.updateddate = DateTime.now    puts ''Found game: '' + g.title
+  + '' with ID '' + g.boardgamegeekID.to_s    g.save  endend That''s it.  This is
+  just a loader and I''ll need some more elegance to maintain this over time (e.g.,
+  checking for duplicate entries, leveraging BGG''s numbering system to avoid revisiting
+  games already loaded, etc.).  Pretty cool stuff, huh?'
+---
+<p>OK, let's geek out in the technical way for a bit.  <a href="http://www.cauldwell.net/patrick/blog/CommentView,guid,239af20e-ec16-425a-aaa4-16b09eb0b6b0.aspx">Patrick mentioned</a> that I pointed him to <a href="http://www.ruby-lang.org">Ruby</a>, and more specifically to <a href="http://www.rubyonrails.org">Ruby on Rails</a>.  I'm quickly falling in love (in a geek sort of way) with the language and framework.  I've been a long-time fan of <a href="http://www.python.org/">Python</a> (check out <a href="http://c2.com/cgi/wiki?PythonVsRuby">this discussion on Python vs. Ruby</a>), but there's something about Ruby that just clicks for me.</p>
+<p><em>Side note: Patrick, you asked about doing web services / SOAP on Ruby.  Check out <a href="http://rrr.jin.gr.jp/rwiki?cmd=view&amp;name=soap4r">soap4r</a>.  Looks like a decent framework and some of the basic tests seem to work.</em></p>
+<p><em>Other side note: When you search for <a href="http://www.google.com/search?hl=en&amp;q=ruby+%22web+services%22&amp;btnG=Google+Search">ruby “web services”</a> you get tons of hits for Sam Ruby.  Best to <a href="http://www.google.com/search?hl=en&amp;lr=&amp;q=ruby+%22web+services%22+-sam&amp;btnG=Search">exclude Sam</a> when looking for more info on this topic.</em></p>
+<p>Rails is a model-view-controller (MVC) framework that strives for simplicity, elegance, and <a href="http://c2.com/cgi/wiki?PrincipleOfLeastSurprise">“Principle of Least Surprise”</a>.  The most interesting component of Rails is <a href="http://activerecord.rubyonrails.org/show/HomePage">ActiveRecord</a>, the simplest object-relational mapping framework I've ever seen.</p>
+<p>I'm doing a personal project to aggregate boardgame pricing data from various online vendors.  To do this, I need to have a master database of games that I can easily keep up to date.  Enter <a href="http://www.boardgamegeek.com">BoardGameGeek</a> - I'd love it if they would offer a web services interface, but for now I'll have to resort to screen-scraping their HTML output.</p>
+<p>Now, for some code.  First, some SQL DDL to define the games table:</p>
+<pre><code>CREATE TABLE games (  
+      id int(10) unsigned NOT NULL auto_increment,  
+      title varchar(50) NOT NULL default '',  
+      boardgamegeekID int(10) NOT NULL default '0',  
+      publisher varchar(255) NOT NULL default '',  
+      updated_date datetime NOT NULL default '0000-00-00 00:00:00',  
+      PRIMARY KEY  (id),  
+      KEY title (title)  
+    ) TYPE=MyISAM;
+</code></pre>
+<p>I then use a Rails script to generate the model, which is a class representation of this table structure.  Rails uses Ruby reflection extensively, so the code for the model is almost laughingly simple:</p>
+<pre><code>require 'active_record'
+
+    class Game &lt; ActiveRecord::Base  
+    end
+</code></pre>
+<p>Yes, that's it.  ActiveRecord will automatically use metadata from the database to determine what attributes to provide, how to generate SQL for CRUD operations, etc.</p>
+<p>I'll talk about the controller / view side of things later, but for now I'll stick to showing some the code used to scrape BGG and populate the database:</p>
+<pre><code>require 'open-uri'  
+    require 'config/environments/production'  
+    require 'app/models/game'
+
+    yearmin = '1960'  
+    yearmax = '2010'  
+    puts "Searching BoardGameGeek to harvest games from " + yearmin + " to " + yearmax  
+    searchURI = "[http://www.boardgamegeek.com/search.php3?yearmin][12]=" + yearmin + "&amp;yearmax=" + yearmax  
+    open(searchURI) do |f|  
+      results = f.read.scan(/A.href="/game/(.*?)"&gt;(.*?)&lt;/)  
+      for row in results  
+        g = Game.new  
+        g.title = row[1]  
+        g.boardgamegeekID = row[0]  
+        g.publisher = ' '  
+        g.updated_date = DateTime.now  
+        puts 'Found game: ' + g.title + ' with ID ' + g.boardgamegeekID.to_s  
+        g.save  
+      end  
+    end
+</code></pre>
+<p>That's it.  This is just a loader and I'll need some more elegance to maintain this over time (e.g., checking for duplicate entries, leveraging BGG's numbering system to avoid revisiting games already loaded, etc.).  Pretty cool stuff, huh?</p>

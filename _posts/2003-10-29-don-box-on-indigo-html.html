@@ -1,0 +1,109 @@
+---
+layout: post
+title: Don Box on Indigo
+date: 2003-10-29 10:00:34.000000000 -07:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1608475133;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2003/10/29/don-box-on-indigo-html/"
+excerpt: ' I''m sitting in a great talk by Don Box on Indigo, the new model and implementation
+  for distributed computing from Microsoft.  Don refers back to the software integrated
+  circuit (IC) analogy for object oriented computing, which has its roots in Brad
+  Cox''s work on Objective-C back in the 80s.  Great metaphor, but even in the world
+  of hardware that model never worked - ICs tend to be too coupled to other components
+  and are actually soldered on the board to build a subsystem like a video card or
+  motherboard.  It hasn''t worked all that well in the software world either - DCOM,
+  CORBA, RMI, etc. are much harder to use than they should be.  And according to Don
+  it is about boundaries - distributed object computing is not respectful of boundaries
+  and results in tightly coupled, difficult to evolve applications.  Don summarized
+  his position with these tenets:   Distributed Objects won''t work.  We''ve tried
+  to make it work, boundaries need to be explicit. Services are autonomous. Independent
+  versioning, deployment, and security. Share schema, not class.  Integration is based
+  on message formats and exchange patterns, not classes and objects.  As soon as we
+  start stretching the wire, and allowing services to become autonomous, we have no
+  idea what runtime, what runtime version, etc.  Its all about boundaries. Policy-based
+  compatibility.  We make explicit assertions about capabilities. What is Indigo? 
+  A collection of .NET assemblies (DLLs).  The Indigo architecture consists of a Service
+  Model, Messaging Services, System Services, Connectors, and Hosting Environments. 
+  Indigo makes service orientation more explicit, makes boundaries more obvious. using
+  System.ServiceModel;  [Service] class MyService {    [ServiceMethod]    void f()
+  {}     public void g() {} } If I''m talking to the class from within the same app
+  (CLR), I can call g() on this class.  If I''m talking to my class in a service-oriented
+  way, the only way to access is through f(), and Indigo will sit in the middle as
+  an interception point.  I can''t even call f() directly - it is implicitly private.  Indigo
+  is also about unification of remoting models between ASMX, .NET remoting, and Enterprise
+  Services.  Indigo is also about interoperability, and WSE is an intermediate step
+  along the way.  Once Indigo is out the door, WSE will evolve to track the protocol
+  evolution for Indigo users, just as it does the same for ASMX users today.  The
+  penalty for using Indigo and service-oriented computing in general should be low. 
+  They are working extremely hard on performance and, to quote Don, "miniaturization"
+  of this general concept.  Preparing for Indigo:   Use ASMX today - the closest thing
+  to the TRUTH today. Use .NET Enterprise Services within your service if you need
+  ES functionality or if you need fast/secure intra-farm ORPC.  FYI, this is where
+  Corillian is today, and right where we should be. Use .NET remoting within your
+  service.'
+---
+<p>I'm sitting in a great talk by Don Box on Indigo, the new model and<br />
+implementation for distributed computing from Microsoft. Don refers back to<br />
+the software integrated circuit (IC) analogy for object oriented computing,<br />
+which has its roots in <a href="http://www.newarchitectmag.com/archives/1997/10/homepage/">Brad Cox's work</a> on<br />
+Objective-C back in the 80s. Great metaphor, but even in the world of hardware<br />
+that model never worked - ICs tend to be too coupled to other components and<br />
+are actually soldered on the board to build a subsystem like a video card or<br />
+motherboard. It hasn't worked all that well in the software world either -<br />
+DCOM, CORBA, RMI, etc. are much harder to use than they should be. And<br />
+according to Don it is about boundaries - distributed object computing is not<br />
+respectful of boundaries and results in tightly coupled, difficult to evolve<br />
+applications.</p>
+<p>Don summarized his position with these tenets:</p>
+<ol>
+<li>Distributed Objects won't work. We've tried to make it work, boundaries need to be explicit.</li>
+<li>Services are autonomous. Independent versioning, deployment, and security.</li>
+<li>Share schema, not class. Integration is based on message formats and exchange patterns, not classes and objects. As soon as we start stretching the wire, and allowing services to become autonomous, we have no idea what runtime, what runtime version, etc. Its all about boundaries.</li>
+<li>Policy-based compatibility. We make explicit assertions about capabilities.</li>
+</ol>
+<p>What is Indigo? A collection of .NET assemblies (DLLs). The Indigo<br />
+architecture consists of a Service Model, Messaging Services, System Services,<br />
+Connectors, and Hosting Environments. Indigo makes service orientation more<br />
+explicit, makes boundaries more obvious.</p>
+<pre><code>using System.ServiceModel;  
+
+ [Service] class MyService  
+ {  
+    [ServiceMethod]  
+    void f() {}  
+
+    public void g() {}  
+ }
+</code></pre>
+<p>If I'm talking to the class from within the same app (CLR), I can call g() on<br />
+this class. If I'm talking to my class in a service-oriented way, the only way<br />
+to access is through f(), and Indigo will sit in the middle as an interception<br />
+point. I can't even call f() directly - it is implicitly private.</p>
+<p>Indigo is also about unification of remoting models between ASMX, .NET<br />
+remoting, and Enterprise Services. Indigo is also about interoperability, and<br />
+WSE is an intermediate step along the way. Once Indigo is out the door, WSE<br />
+will evolve to track the protocol evolution for Indigo users, just as it does<br />
+the same for ASMX users today.</p>
+<p>The penalty for using Indigo and service-oriented computing in general should<br />
+be low. They are working extremely hard on performance and, to quote Don,<br />
+"miniaturization" of this general concept.</p>
+<p>Preparing for Indigo:</p>
+<ul>
+<li>Use ASMX today - the closest thing to the TRUTH today.</li>
+<li>Use .NET Enterprise Services within your service if you need ES functionality or if you need fast/secure intra-farm ORPC. FYI, this is where Corillian is today, and right where we should be.</li>
+<li>Use .NET remoting within your service.</li>
+</ul>

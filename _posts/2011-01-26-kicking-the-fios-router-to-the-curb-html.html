@@ -1,0 +1,32 @@
+---
+layout: post
+title: Kicking the FIOS router to the curb
+date: 2011-01-26 06:30:08.000000000 -07:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1614219379;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2011/01/26/kicking-the-fios-router-to-the-curb-html/"
+---
+<p>I've been on Verizon (now Frontier) Fios for several years and mostly love it.  Bandwidth has been consistently good and we <em>never</em> have TV outages (unlike DirecTV). When we purchased the second generation Apple TV late last year I started to see some problems that gradually pointed me to the Verizon-supplied Actiontec router that was installed when we purchased FIOS.  The problem was my Apple TV would disconnect from iTunes and would be unable to find my library despite following all of Apple's troubleshooting guidelines.  It would find the internet just fine - I could stream Netflix, download movies from the iTunes store, but no access to my iTunes on my local wireless network.</p>
+<p>I started to get suspicious when I saw a similar problem with my wireless Epson Artisan 810 printer.  It would also go offline and none of my computers (Windows or Mac) would be able to see it even though it was clearly still connected to the network. I spent several hours on Nov 27 and 28 trying to diagnose the issue and started to deeply search the internets for some linkage between FIOS and the Apple TV when I happened on <a href="http://discussions.info.apple.com/message.jspa?messageID=12667377#12667377">this post</a> which showed up Sunday morning Nov 28.  Sure enough, changing this obscure advanced wireless setting from "Home/Office" to "Broadband" would fix the problem in both the Apple TV and my printer.  To this day I don't actually know what this setting changes, and I don't really care.</p>
+<p><img src="{{ site.baseurl }}/assets/2011/01/20110126-8phj2mfq9jaqt73tnygdpj93qe.jpg" alt="wireless" title="Wireless settings" /></p>
+<p>Unfortunately, a pattern ensued where every week or so the problem would reappear.  I would need to go back into my router and adjust the settings.  Oddly, sometimes I would find it had been toggled back to "Home/Office" and sometimes it was still on Broadband.  In both cases, toggling it back to Broadband and applying the changes would fix the problem.</p>
+<p>Clearly this isn't a good solution for a home entertainment system.  It needs to "just work" without this sort of intervention.  Seeing <a href="http://www.hanselman.com/blog/AddingANetgearN600WirelessDualBandGigabitRouterWNDR3700ToAnExistingFIOSWirelessAPForImprovedWirelessCoverage.aspx">Scott Hanselman's article about installing a Netgear N600 router</a> motivated me to hopefully solve this problem for good.  The router arrived last Friday, I installed it on Sunday and so far so good.  If you go down this path <em>make sure you follow Scott's instructions exactly</em>.  Your most likely mistake will be to not follow this guidance:</p>
+<blockquote>
+<p>After the Netgear is configured, now unplug the yellow external LAN wire and instead plug into one of the standard four ethernet ports into either your switch (that's what I did, gigabit to gigabit) or directly into your ISP's router. We want the new router to get an IP address from our existing router and route traffic and DHCP requests to the ISP's router. To be clear: <em>Setting up your new router in this way will leave the yellow upstream external network port empty, despite what the documentation says.</em></p>
+</blockquote>
+<p>Pay attention to Scott - he knows what he's talking about and this last step is critical to get DHCP to work properly.</p>
+<p>We are doing some remodeling of <a href="http://www.chrisbrooks.org/blog/2005/12/3/redecorating-the-game-room.html">our game room</a> that will involve a second Apple TV so it is good to have this worked out.  Additionally, given the much stronger antenna set in the Netgear wireless I'm going to try to tuck away the FIOS box and router in our crawlspace and see if we still get adequate coverage in the house.</p>

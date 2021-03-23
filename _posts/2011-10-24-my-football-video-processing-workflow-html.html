@@ -1,0 +1,71 @@
+---
+layout: post
+title: My Football Video Processing Workflow
+date: 2011-10-24 23:47:06.000000000 -06:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags:
+- football
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1614331113;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2011/10/24/my-football-video-processing-workflow-html/"
+---
+<p>Video capture, processing, and publishing are a huge part of my football coaching routine.  We film all of our games (Julie being my go-to videographer) and I spend a lot of time on the road capturing scout film of future opponents.  I commonly have 2-3 hours of video processing to work through on a given weekend, often with a 12-18 hour required turnaround before we have our coaching meeting on Sunday evening.</p>
+<p>"Back in the day" things were a bit simpler.  We would capture the film on a digital camcorder then burn a few DVDs for coaches.  Problem solved.  Some things have changed that no longer make this viable:</p>
+<ul>
+<li>Parents and family of players really like to see game film.  We have parents who live away from their player, parents who travel, grandparents, etc.  Making DVDs for all of these folks could turn into a part-time job.</li>
+<li>We started using <a href="http://hudl.com">Hudl</a> for film analysis and scouting.  This requires that we have a digital version that we can upload and turn into a play-by-play breakdown.</li>
+</ul>
+<p>This year I publish game film in multiple forms:</p>
+<ul>
+<li>I publish whole-game film to <a href="http://vimeo.com/user700815/videos">Vimeo</a>, usually password-protected so as to make things a bit more difficult for opponents to easily gain access to our film.  The later we get in the season the less I worry about this.  Our players love this because they can share the film with families and even download their own copies of the games for their records.</li>
+<li>I upload individual play clips to Hudl for breakdown and analysis.  This allows the coaches to do deep analysis on tendencies, our opponent's best plays and players, and review our own film for the same.  We also mark up individual plays (think John Madden with a telestrator) to share with our players.</li>
+<li>As a last resort I can burn a DVD using the awful iDVD application from Apple.  I think I've had to burn a total of 2 DVDs this year.</li>
+</ul>
+<p>I thought I'd share my detailed video processing workflow -- you may find something useful in here whether or not you process film for football.</p>
+<h3>Video Capture</h3>
+<p>Most of my video is captured on a Canon 7D DSLR with Canon EF 70-200mm f/2.8L lens.  This is an expensive setup for filming but I'm a photographer and this works pretty well for us.  Ask Julie sometime how hard it is to get acquainted with a setup that requires manual exposure control and lacks follow focus.  My backup camera is a Panasonic Lumix DMC-TS2 -- the camera we bought for our underwater shooting in Galapagos earlier this year.  This is the camera I give to friends who will go scout games for me.</p>
+<p>My rules for football film capture are simple:</p>
+<ul>
+<li>One play per video clip.  Start the camera before the start of the play and stop it after.  This is critical for making it easy to load film into Hudl.</li>
+<li>Try to start zoomed out so that you can easily see the field position and down/distance.</li>
+<li>Show the scoreboard after each scoring play and end of each quarter.</li>
+</ul>
+<p>A typical full youth game (12 minute quarters) has about 30-45 minutes of video.  On my Canon 7D this equates to about 15GB of video data recorded in 1080p full HD, 1920x1080, 30 frames per second, H.264 encoded.  This is higher quality than I need for film analysis, but with 32GB flash cards I'd rather just capture at the highest quality and downgrade later for processing.</p>
+<p><em>Example</em> -- <a href="http://vimeo.com/31055212">Here is a video of our end-of-game Bowmen cheer</a> taken last weekend.  It is about a minute long, and out of the camera it was a 400MB file.</p>
+<p><iframe src="http://player.vimeo.com/video/31055212?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen allowfullscreen></iframe></p>
+<h3>Initial Processing</h3>
+<p>I used to pull the raw video straight into iMovie for processing on my now 3-year-old iMac with attached Drobo 3TB storage device.  Importing 15GB of HD video could sometimes take all night (10+ hours).  Some of this is my slowish iMac, some of this is iMovie and how it handles video like this.</p>
+<p>This year I changed my workflow to compress and downgrade my video for easier processing.  Initially I did this manually using <a href="http://handbrake.fr/">HandBrake</a> with great success.  I just used the "Apple TV 2" preset which converts the video to 1280x720 H.264 and saw file sizes reduced by an order of magnitude.  The video above went from 400MB to 48.3MB.</p>
+<p>Still, manually converting individual clips was not going to be a winning solution - I needed a way to automate it for large collections of clips -- typically about 100-120 clips per game.  The solution for me was to use the <a href="http://handbrake.fr/downloads2.php">HandBrake Command Line Interface</a> combined with my favorite file automation tool on the Mac, <a href="http://www.noodlesoft.com/hazel.php">Hazel</a>.  I created a special folder on my Mac called "ToConvert" and created a processing rule to act on all files not ending in mp4 (input files will typically have a .MOV extension)</p>
+<p><img src="{{ site.baseurl }}/assets/2011/10/20111025-pyc9nqdrm61k6a7c3irmpith48.jpg" alt="" title="Hazel rules" /></p>
+<p>The script that gets invoked for each file is very simple and calls the HandBrakeCLI with the "AppleTV 2" preset:</p>
+<pre><code>#!/bin/bash
+
+if [[ $1 =~ ([0-9a-zA-Z_.-]*)..* ]]; then
+    /usr/local/bin/HandBrakeCLI -i "$1" -o "${BASH_REMATCH[1]}.mp4" --preset="AppleTV 2"
+fi
+</code></pre>
+<p>I throw all 15GB or so of my movie clips at this directory and my MacBookPro starts spinning (with CPU temperature hitting 190f or so!) and completes the processing in less than an hour.  Now I have a set of 1280x720 mp4 files that I can easily work with in my other tools.</p>
+<p>Note that this approach works for any kind of movie file that HandBrake can handle, so those <a href="http://en.wikipedia.org/wiki/AVCHD">AVCHD</a> files that come out most consumer camcorders also work just fine.</p>
+<h3>Post Processing</h3>
+<p>After converting these files I immediately copy them to an external drive and walk over to my Windows desktop to upload to Hudl.  Yes, you can <a href="http://www.hudl.com/support/category/hudl-video-editor/">only upload to Hudl using a Windows desktop</a>.  Hopefully they address this at some point and offer a Mac option.  Because my upload is comprised of play-by-play clip files, I generally don't have to do any manual intervention on the upload to support the breakdown in Hudl -- it just works.</p>
+<p>Simultaneously with the Hudl upload I will begin importing these downgraded files into iMovie.  This usually takes about another hour or so to process for a full game.  Once they are imported I quickly add a title screen and add the rest of the clips in order.  Rarely will I do any other editing.  You can <a href="http://vimeo.com/30981341">see a sample of one of my game films on Vimeo</a>.</p>
+<p>The Hudl upload also takes about an hour for me.  Once that is complete I dive into film breakdown.  This involves looking at each play and marking it as offense/defense/kicking, recording down/distance and field position, and for our offense recording details about our formation, motion, and play called.  I'll do another post in the future showing what I record for opponent scout film.</p>
+<h3>Publishing</h3>
+<p>The great thing about Hudl is that once I've uploaded film it is instantly shareable to the other coaches and players.  I'll often mark big plays as highlights, even tagging some specific player highlights, and Hudl automatically creates <a href="http://www.hudl.com/team/21888">highlight reels for the team on a game-by-game basis</a>.  The Hudl Youth package that I subscribe to does <strong>not</strong> support film sharing between coaching so I have no first-hand experience using that.  It uses a robust escrow model though and I know our high school coaches trust it.</p>
+<p>My other publishing avenue is through Vimeo, which involves uploading the full movie file produced from iMovie.  I will usually password protect our game film and send a direct link to the coaches and players so that they can view and share with family.  Password protected videos will not automatically show up in my profile.  It is a weak form of security given how broadly I send the links and passwords, but good enough for my use.  When I need to share film with an opponent coach I can just send the URL and password - so much easier than arranging a face-to-face meetup to exchange DVDs.  That said, most of the other coaches don't have an online option so I often end up receiving DVDs that I then need to rip and process myself.</p>
+<h3>Conclusions</h3>
+<p>The incorporation of HandBrakeCLI and the Hazel automation was the real game changer for me this year.  I come home from the game, insert my CF card into the reader, drag the movie files into my conversion folder, then walk away and consume a chilled adult beverage.  I usually have the film ready to view by the coaches in Hudl within 2 hours of the game finishing.  If Hudl offered a Mac upload option I could streamline things even more.</p>
+<p>Do let me know here in the comments if you have questions on the workflow or suggestions for improvement.</p>

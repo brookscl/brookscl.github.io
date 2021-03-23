@@ -1,0 +1,116 @@
+---
+layout: post
+title: SuperQuest and Willamette Programming Contest
+date: 2011-03-16 04:40:58.000000000 -06:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags:
+- techstart
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1614161081;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2011/03/16/superquest-and-willamette-programming-contest-html/"
+---
+<p><a href="http://techstart.org/">TechStart</a>, a non-profit that I've been helping run for 6+ years now, held its annual <a href="http://techstart.org/superquest/springconference">SuperQuest Spring Conference</a> and <a href="http://techstart.org/willamette">Willamette University - TechStart Programming Contest</a> down in Salem, OR on Saturday March 12.</p>
+<p><a href="http://www.flickr.com/photos/chrisbrooks/5525235292/" title="20110312-Spring Conference-27 by brookscl, on Flickr"><img src="{{ site.baseurl }}/assets/2011/03/5525235292_091151aa97.jpg" alt="20110312-Spring Conference-27" /></a></p>
+<p>At our spring conference we trained nearly 40 Oregon and Washington K-12 teachers in various topics related to technology and computer science: <a href="http://scratch.mit.edu/">Scratch programming</a> for elementary students, robotics, video production for instruction, and discrete mathematics.  The instructors for these training sessions are teachers that have a proven track record in the classroom - they exude credibility.</p>
+<p><a href="http://www.flickr.com/photos/chrisbrooks/5524645421/" title="Don Domes showing video capture by brookscl, on Flickr"><img src="{{ site.baseurl }}/assets/2011/03/5524645421_13bce2d1cc.jpg" alt="Don Domes showing video capture" /></a></p>
+<p>One of the highlights for me was seeing fellow TechStart board member <a href="http://www.linkedin.com/pub/don-domes/5/8/930">Don Domes</a> teach how to create video captures for instruction on a tight budget.  He uses <a href="http://www.khanacademy.org/">Khan Academy</a> as his model.</p>
+<p><a href="http://www.flickr.com/photos/chrisbrooks/5524647389/" title="Programming team by brookscl, on Flickr"><img src="{{ site.baseurl }}/assets/2011/03/5524647389_a3f3612bae.jpg" alt="Programming team" /></a></p>
+<p>While the teachers are being trained, over a dozen high school computer programming teams were hard at work on the state high school programming competition run by <a href="http://www.willamette.edu/~fruehr/">Fritz Ruehr</a> of Willamette University.  This was my fourth or fifth year attending the event, and the second time watching my own son Jacob compete as part of the Sherwood High School team.  Teams work on 14 different computer science problems (in the style of the <a href="http://cm.baylor.edu/">ACM programming contest</a>, <a href="http://techstart.org/docs/Willamette-TechStart_2010Problems.pdf)">problem set from 2010</a>) and score points for successful completion as well as bonus points for finishing problems before other teams.</p>
+<p>Here's a sample of one of the easier problems of the day:</p>
+<h2>Bracket Balancing</h2>
+<blockquote>
+<p><em>Programmers know how annoying it can be when parentheses, brackets, and<br />
+  braces get out of balance in their code.  You are working on a programmers'<br />
+  editor and need to write a utility which will highlight selected portions<br />
+  of the code in red if any of the bracketing characters within are out of<br />
+  balance.  Your code will check the selection for "round" parentheses (),<br />
+  square brackets [], curly braces {} and even angle brackets &lt;>. Furthermore,<br />
+  you should check a "no crossings" rule, so that different shapes of brackets<br />
+  don't get mixed up.  For example, a string like " &lt; () [ { ] } >" is not<br />
+  allowed: even though the curly braces and the square brackets come in matched<br />
+  pairs, they cross each other in between.  Finally, your program should ignore<br />
+  any <strong>non</strong>-bracket characters, so that other bits of code (perhaps variable<br />
+  names, numbers, and keywords) can be intermixed.  As output, you should write<br />
+  out the word "OK" (if everything balances, with no crossings) or "BAD" if<br />
+  something goes wrong. (If you are using a GUI, you may even highlight the<br />
+  code in green or red to indicate OK and BAD strings... just make sure that<br />
+  it's clear when your check is finished!)</em></p>
+<p><em>Some examples:</em></p>
+</blockquote>
+<pre><code>Input: foo(bar[i].{}&lt;&lt;&gt;&gt;[baz]123)    Output:  OK
+Input: oof{}[&lt;&lt;quux&gt;&gt; 17 ] ( {}      Output:  BAD
+Input: [17] () 23 .. &lt; [ &gt; foo &gt;     Output:  BAD
+</code></pre>
+<p>I had some free time towards the end of the contest and worked through a solution on my own using Ruby:</p>
+<pre><code>VALID_OPEN = "([&lt;{"
+VALID_CLOSE = ")]&gt;}"
+
+def open_token(char)
+  return VALID_OPEN.index(char)
+end
+
+def close_token(char)
+  return VALID_CLOSE.index(char)
+end
+
+def matches_open(open, close)
+  VALID_OPEN.index(open) == VALID_CLOSE.index(close)
+end
+
+def bracket_balance(input)
+  token_stack = []
+  input.chars.each do |char|
+    if open_token(char)
+      token_stack.push char
+    elsif close_token(char)
+      return false if !matches_open(token_stack.pop, char)
+    end
+  end
+  token_stack.length == 0
+end
+
+while expression = gets
+  if bracket_balance(expression)
+    puts "OK"
+  else
+    puts "BAD"
+  end
+end
+</code></pre>
+<p>I think <a href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development</a> is a great methodology for approaching problems like this, and I plan to do some mentoring of Jacob and his team members as they approach next year's contest.  Here are some samples of tests I wrote as I worked on the problem (these would look even cleaner if I used Cucumber or FIT-style scenario tables):</p>
+<pre><code>class TestBracketBalancing &lt; Test::Unit::TestCase
+  def test_empty_string
+    assert bracket_balance('')
+  end
+
+  def test_single_paren
+    assert !bracket_balance('(')
+  end
+
+  def test_double_paren
+    assert bracket_balance('()')
+  end
+
+  def test_1
+    assert bracket_balance('foo(bar[i].{}&lt;&lt;&gt;&gt;[baz]123)')
+  end
+
+  def test_2
+    assert !bracket_balance('oof{}[&lt;&lt;quux&gt;&gt; 17 ] ( {}')
+  end
+end
+</code></pre>
+<p>Jacob's team had a solid teamwork model - he and one team member focused on implementation and programming and took on some of the easier problems on their own, while their senior team member worked ahead on paper in pseudo-code on some of the more challenging items.  They did very well, finishing second overall and just a hair behind the winning team (both teams solved 8 of the 14 problems).</p>
+<p><a href="http://www.flickr.com/photos/chrisbrooks/5524653817/" title="Varsity 2nd Place by brookscl, on Flickr"><img src="{{ site.baseurl }}/assets/2011/03/5524653817_9563c360fa.jpg" alt="Varsity 2nd Place" /></a></p>

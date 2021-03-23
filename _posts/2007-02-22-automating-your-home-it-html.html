@@ -1,0 +1,246 @@
+---
+layout: post
+title: Automating Your Home IT
+date: 2007-02-22 18:37:07.000000000 -07:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1614996856;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2007/02/22/automating-your-home-it-html/"
+excerpt: 'I enjoy hacks that simplify my life and let me focus on the stuff that really
+  matters.  I''m a long-time reader of Lifehacker and even bought Gina''s book so
+  that I''d be able to read it while sitting on airplanes (like I am now).  For the
+  past 4-6 weeks I''ve been on a mission to automate as many routine IT-related tasks
+  as possible.  This includes making sure that I have a stable and secure IT infrastructure
+  at home that I can remotely manage while traveling.  Maybe some of you are interested
+  in the journey I''ve taken so far, so here goes. The Environment This is what my
+  home IT environment looks like:  Comcast broadband over cable  Wireless network,
+  WPA and MAC address filtering enabled.  Port 22 only forwarded from the wide open
+  Internet to allow in-bound SSH to my Linux box.  Julie''s Dell laptop, usually anchored
+  in our office, but sometimes used remotely.  Connects wirelessly to our home network.  2
+  Shuttle XPC-style Windows XP boxes, primarily for gaming.  One of them is also my
+  iTunes host (database, not the music files themselves).  A headless Windows file
+  server for documents, music, and photos.  This is a Dell desktop that I bought 8
+  years ago and it still works like a charm.  I''ve cut this Windows XP environment
+  down to the core and only manage it through remote desktop (there''s no keyboard
+  or monitor attached to it).  A 4-year-old FragBox running Ubuntu Edgy Linux desktop.   From
+  time to time, my work IBM ThinkPad T43 is connected into this network. Document
+  / Photo / Music Backups Documents and photos are, to me, the most critical information
+  to protect.  I''ve got a decent, though not bullet-proof solution in place here. 
+  This is what I do now:  The file server has a mirrored RAID configuration with two
+  separate 100GB disks.  So I have some inherent redundancy in the file storage itself.  I
+  have a REV drive attached to the USB 2.0 port for backups.  I run SynchBackSE to
+  do nightly backups of photos and documents.  I have a Google Calendar reminder that
+  auto-generates a todo item for me (using GTDGmail of course) to rotate my REV disk
+  once a month.  When I rotate the disk, the recent one goes into a firebox where
+  I keep some other important documents like passports.  I''m not as concerned about
+  backing up music because I can re-generate 99% of my library by re-ripping my 200+
+  CDs.  I''ve done a few snapshot backups on REV drives, but it is not a regular process. 
+  This is mostly because my REV drive isn''t large enough to hold docs, photos, and
+  music. What could be improved: I feel like I should be rotating the backups more
+  frequently and leveraging some offsite storage.  I need to find a backup buddy that
+  I can exchange with.  Any takers out there? FolderShare This is an amazing tool,
+  and I hope Microsoft doesn''t do anything to reduce its usefulness.  I use this
+  for replicating a number of key document sets to 3-4 of the machines in my environment. 
+  FolderShare is what allows me to work offline and trust that proper synchronization
+  will happen when I reconnect.  It has some gotchas and sometimes negative side effects
+  (watchout for cascading deletes!), but I''ve learned to love this tool and it is
+  part of my normal desktop environment.  It is also great for remote file access.
+  Auto Defrag This was an easy hack to setup, so why not automate this?  If I don''t
+  work on a PC frequently, I''m very unlikely to remember to initiate a defrag.  I
+  schedule these to run on all of my Windows boxes on Sunday nights. Content Filtering
+  / Family-Safe Browsing Our boys are getting older and much more savvy about using
+  the internet.  While we supervise this activity as much as possible, I wanted to
+  put in place some automated tools to provide content filtering and tracking of web
+  access.  I went with BSafe Online and so far I''m happy with it.  It takes a while
+  to tune it so that certain important sites (like Wikipedia) aren''t blocked, but
+  that''s fine with me.  There are some nice side effects like ad blocking, and I
+  get weekly email reports of site access so that I can monitor what''s going on in
+  my household. Auto Hotkey Scripts AutoHotkey - what a fantastic little tool.  I
+  haven''t defined a huge number of keyboard macros, but I still find this to be a
+  useful timesaver and it fits really well with my FolderShare distribution model. 
+  I have a folder called Briefcase that I replicate to all of my desktops.  I compile
+  my AutoHotkey scripts into an executable and have it launch from the Briefcase on
+  startup - this helps ensure that I always have the same set of scripts available
+  on all of my (Windows) machines.  I mostly use the scripts for email signatures
+  - handy as I have many different personas I take on when answering email. Note:
+  the rest of these hacks are implemented in the Unix world of BASH shell scripting,
+  MySQL, Apache2, etc.   Why Run a Home Linux Server? Oh, let me count the ways:  Ubuntu
+  is an extremely friendly desktop O/S for the savvy user.  You''ve got to take my
+  "friendly" guidance in that context - this still isn''t for the faint of heart unless
+  you expect to do nothing more than work with OpenOffice, FireFox, and Thunderbird. 
+  I''ve been hacking around Unix variants for over 20 years, and I''m sometimes amazed
+  at what I can pull from the dark corners of my brain when working through some particularly
+  challenging configuration steps.  I still don''t think Linux is ready for mass consumption
+  on the desktop, but Ubuntu is certainly the closes I''ve seen.  It is a great way
+  to make good use of aging Intel boxes.  Still, don''t forget that my headless Windows
+  fileserver is twice as old as my Linux box.  And they both just run and run and
+  run.  If you want to have complete control for automation and powerful remote access,
+  I think the path to success is shorter with Linux than Windows.  Then again, I"m
+  not (yet) a PowerShell geek like Scott is.  It''s just different than what I live
+  in day to day.  My company primarily ships products that run on Windows.  I like
+  to see what''s going on with the other half.  If I''m going to write a Ruby on Rails
+  application, I''d rather go all the way and develop in a Linux (or any non-Windows)
+  environment with MySQL, Apache, and Subversion. What Do I Run There?  As necessary,
+  a Ruby/Rails application that Jacob and I developed for tracking all of the players
+  and teams in Sherwood Youth Football (Julie is the secretary for the organization). 
+  This was an interim step as they plan to move to a web-based outsourced solution
+  this year.  It was a fun playground for sharpening my Rails skills and learning
+  how Rails supports AJAX functionality.  This app is backed by MySQL.  A personal
+  MediaWiki installation.  This is the same Wiki that sits under Wikipedia - maybe
+  that''s overkill, but I love the extensibility of MediaWiki, the categorization
+  capabilities, and the likelihood that it will stay supported for a long time.  Jacob
+  is learning the Wiki Way and is using it for merit badge work for scouts.  I''d
+  like to get him to start organizing his homework there too.  I''m using it as a
+  general holding place for all sorts of information. I''m also in the middle of writing
+  up a narrative of our family history.  The wiki is backed by MySQL. Note: One cool
+  thing about using Putty on Windows for connecting via SSH is that I can tunnel HTTP
+  requests through the SSH connection and work on my home Wiki even when I''m remote. 
+  I use DynDNS to make it easy to find my home network while remote.  A Subversion
+  repository and server.  A replicated mail repository that mirrors my GMail account
+  into a local mbox that I can read using Mutt.  Great for super-low-bandwidth connections
+  or when, heaven forbid, GMail is down (this seems to happen more and more of late).  Various
+  Linux services of value, such as an SSH server for remote access, remote desktop,
+  and cron for scheduled jobs. What could be improved: I''d like to use a more robust
+  certificate exchange with my remote SSH access to the Linux server.  Right now I
+  rely on password strength, and that doesn''t give me a lot of comfort. MySQL Backups
+  Given the critical nature of the data I''m storing in MySQL, I need to ensure that
+  I have frequent, trustworthy backups.  For a long time I took care of this manually
+  using mysqldump and a simple email to my GMail account.  To automate this process,
+  I cobbled together a few tools that are working quite nicely together:  MySQLblasy.pl
+  - a simple Perl script that backs up all or some of the databases in a MySQL server,
+  TARs up the resulting SQL files, gzips the TAR file, and uses a sensible file naming
+  approach using a date/time stamp.  It even rotates backups and can keep the last
+  2 days, 2 weeks, etc. on the local disk.  sendEmail - a BASH script that will send
+  a file attachment via SMTP.  After running the MySQL backup I send the file to my
+  GMail account.  crontab - I then automate the above by scheduling the backups to
+  run every evening.  They automatically get tagged and archived in GMail, so I can
+  simply check my GMail tag list and see the backups roll in on a daily basis. SVN
+  Backups I keep source code and other key files in Subversion, so that needs to be
+  backed up as well.  This is much less likely to change frequently, so on a weekly
+  basis I run a schedule BASH script that I wrote that does a hot copy of the repository,
+  tar/gzips it, then emails it to my GMail account. What could be improved: I need
+  to start putting configuration files into Subversion.  As I learned when having
+  to completely rebuild by Linux box last Sunday after a catastrophic drive failure,
+  a lot of time is spent getting Apache, MySQL, Subversion, etc. configured properly. 
+  I also need to automate the deployment of said configuration - maybe Capistrano
+  could help me out? Email Backups I run fetchmail every hour to pull my GMail downto
+  a traditional mbox on the Linux box.  This allows me to use any of a number of tools
+  to read my mail, but this is mostly just for backup purposes.  Todo Script This
+  is probably the simplest but one of the most useful hacks I wrote: #!/bin/bashecho
+  "Adding action: "$1 /home/chris/scripts/sendEmail -f brookscl@gmail.com -t brookscl+Action@gmail.com
+  -u     $1 -m "Todo: "$1 -s smtp.gmail.com -xu brookscl@gmail.com -xp xxxxxx -o tls=yes
+  When I do my weekly GTD review, I may generate anywhere from 25-30 tasks.  This
+  used to mean sitting in GMail and composing emails (tasks) to myself.  Even with
+  the keyboard shortcuts it was annoyingly tedious.  With this script I can open an
+  SSH session to my Linux box and type away:  $ todo "Write a blog post on automation"Adding
+  action: Write a blog post on automation$ todo "Change the oil in the RAV"Adding
+  action: Change the oil in the RAV My Windows box was jealous so I wrote the equivalent
+  batch file, using the very handy blat tool for command line emails:  @echo offblat
+  -p brookscl -to brookscl+Action@gmail.com -subject %1 -body %1 > NUL Future Projects  Tighten
+  up the security environment around my Linux box.  Maybe try some penetration test
+  tools to see what vulnerabilities I have, particularly coming over the public internet.  Integrate
+  my Windows-based file server with my Linux box.  I love using GMail as a backup
+  mechanism, but why not dump the same backups onto that box and incorporate into
+  my rotating backup on the REV disk?  Teach Jacob (and eventually Matthew) how all
+  of this is done so that he can be a junior Sys Admin.  Every 12 year old should
+  know how to write BASH scripts, right?'
+---
+<p>I enjoy hacks that simplify my life and let me focus on the stuff that really matters.  I'm a long-time reader of <a href="http://www.lifehacker.com">Lifehacker</a> and even bought Gina's book so that I'd be able to read it while sitting on airplanes (like I am now).  For the past 4-6 weeks I've been on a mission to automate as many routine IT-related tasks as possible.  This includes making sure that I have a stable and secure IT infrastructure at home that I can remotely manage while traveling.  Maybe some of you are interested in the journey I've taken so far, so here goes.</p>
+<h3>The Environment</h3>
+<p>This is what my home IT environment looks like:</p>
+<ul>
+<li>Comcast broadband over cable </li>
+<li>Wireless network, WPA and MAC address filtering enabled.  Port 22 only forwarded from the wide open Internet to allow in-bound SSH to my Linux box. </li>
+<li>Julie's Dell laptop, usually anchored in our office, but sometimes used remotely.  Connects wirelessly to our home network. </li>
+<li>2 Shuttle XPC-style Windows XP boxes, primarily for gaming.  One of them is also my iTunes host (database, not the music files themselves). </li>
+<li>A headless Windows file server for documents, music, and photos.  This is a Dell desktop that I bought <em>8 years ago</em> and it still works like a charm.  I've cut this Windows XP environment down to the core and only manage it through remote desktop (there's no keyboard or monitor attached to it). </li>
+<li>A 4-year-old FragBox running <a href="http://www.ubuntu.com/">Ubuntu Edgy Linux desktop</a>. </li>
+<li>From time to time, my work IBM ThinkPad T43 is connected into this network.</li>
+</ul>
+<h3>Document / Photo / Music Backups</h3>
+<p>Documents and photos are, to me, the most critical information to protect.  I've got a decent, though not bullet-proof solution in place here.  This is what I do now:</p>
+<ul>
+<li>The file server has a mirrored RAID configuration with two separate 100GB disks.  So I have some inherent redundancy in the file storage itself. </li>
+<li>I have a <a href="http://www.iomega.com/direct/products/family.jsp?FOLDER%3C%3Efolder_id=26891275&amp;ASSORTMENT%3C%3East_id=26890319&amp;bmUID=1172190256738">REV drive</a> attached to the USB 2.0 port for backups. </li>
+<li>I run <a href="http://www.2brightsparks.com/syncback/sbse.html">SynchBackSE</a> to do nightly backups of photos and documents.  I have a Google Calendar reminder that auto-generates a todo item for me (using <a href="http://www.gtdgmail.com/">GTDGmail</a> of course) to rotate my REV disk once a month. </li>
+<li>When I rotate the disk, the recent one goes into a firebox where I keep some other important documents like passports. </li>
+<li>I'm not as concerned about backing up music because I can re-generate 99% of my library by re-ripping my 200+ CDs.  I've done a few snapshot backups on REV drives, but it is not a regular process.  This is mostly because my REV drive isn't large enough to hold docs, photos, and music.</li>
+</ul>
+<p><em>What could be improved</em>: I feel like I should be rotating the backups more frequently and leveraging some offsite storage.  I need to find a backup buddy that I can exchange with.  Any takers out there?</p>
+<h3>FolderShare</h3>
+<p>This is an amazing tool, and I hope Microsoft doesn't do anything to reduce its usefulness.  I use this for replicating a number of key document sets to 3-4 of the machines in my environment.  <a href="http://www.foldershare.com">FolderShare</a> is what allows me to work offline and trust that proper synchronization will happen when I reconnect.  It has some gotchas and sometimes negative side effects (watchout for cascading deletes!), but I've learned to love this tool and it is part of my normal desktop environment.  It is also great for remote file access.</p>
+<h3>Auto Defrag</h3>
+<p>This was an <a href="http://lifehacker.com/software/feature/hack-attack-using-windows-scheduled-tasks-153089.php">easy hack to setup</a>, so why not automate this?  If I don't work on a PC frequently, I'm very unlikely to remember to initiate a defrag.  I schedule these to run on all of my Windows boxes on Sunday nights.</p>
+<h3>Content Filtering / Family-Safe Browsing</h3>
+<p>Our boys are getting older and much more savvy about using the internet.  While we supervise this activity as much as possible, I wanted to put in place some automated tools to provide content filtering and tracking of web access.  I went with <a href="http://bsafehome.com/">BSafe Online</a> and so far I'm happy with it.  It takes a while to tune it so that certain important sites (like Wikipedia) aren't blocked, but that's fine with me.  There are some nice side effects like ad blocking, and I get weekly email reports of site access so that I can monitor what's going on in my household.</p>
+<h3>Auto Hotkey Scripts</h3>
+<p><a href="http://www.autohotkey.com/">AutoHotkey</a> - what a fantastic little tool.  I haven't defined a huge number of keyboard macros, but I still find this to be a useful timesaver and it fits really well with my FolderShare distribution model.  I have a folder called Briefcase that I replicate to all of my desktops.  I compile my AutoHotkey scripts into an executable and have it launch from the Briefcase on startup - this helps ensure that I always have the same set of scripts available on all of my (Windows) machines.  I mostly use the scripts for email signatures - handy as I have many different personas I take on when answering email.</p>
+<p><em>Note</em>: the rest of these hacks are implemented in the Unix world of BASH shell scripting, MySQL, Apache2, etc.</p>
+<h3>Why Run a Home Linux Server?</h3>
+<p>Oh, let me count the ways:</p>
+<ul>
+<li>Ubuntu is an extremely friendly desktop O/S for the <em>savvy user</em>.  You've got to take my "friendly" guidance in that context - this still isn't for the faint of heart unless you expect to do nothing more than work with OpenOffice, FireFox, and Thunderbird.  I've been hacking around Unix variants for over 20 years, and I'm sometimes amazed at what I can pull from the dark corners of my brain when working through some particularly challenging configuration steps.  I still don't think Linux is ready for mass consumption on the desktop, but Ubuntu is certainly the closes I've seen. </li>
+<li>It is a great way to make good use of aging Intel boxes.  Still, don't forget that my headless Windows fileserver is twice as old as my Linux box.  And they both just run and run and run. </li>
+<li>If you want to have complete control for automation and powerful remote access, I think the path to success is shorter with Linux than Windows.  Then again, I"m not (yet) a <a href="http://www.hanselman.com/blog/">PowerShell geek like Scott is</a>. </li>
+<li>It's just different than what I live in day to day.  My company primarily ships products that run on Windows.  I like to see what's going on with the other half.  If I'm going to write a Ruby on Rails application, I'd rather go all the way and develop in a Linux (or any non-Windows) environment with MySQL, Apache, and Subversion.</li>
+</ul>
+<h3>What Do I Run There?</h3>
+<ul>
+<li>As necessary, a Ruby/Rails application that Jacob and I developed for tracking all of the players and teams in Sherwood Youth Football (Julie is the secretary for the organization).  This was an interim step as they plan to move to a web-based outsourced solution this year.  It was a fun playground for sharpening my Rails skills and learning how Rails supports AJAX functionality.  This app is backed by MySQL. </li>
+<li>A personal <a href="http://www.mediawiki.org/wiki/MediaWiki">MediaWiki</a> installation.  This is the same Wiki that sits under Wikipedia - maybe that's overkill, but I love the extensibility of MediaWiki, the categorization capabilities, and the likelihood that it will stay supported for a long time.  Jacob is learning the Wiki Way and is using it for merit badge work for scouts.  I'd like to get him to start organizing his homework there too.  I'm using it as a general holding place for all sorts of information. I'm also in the middle of writing up a narrative of our family history.  The wiki is backed by MySQL. <em>Note</em>: One cool thing about using Putty on Windows for connecting via SSH is that I can tunnel HTTP requests through the SSH connection and work on my home Wiki even when I'm remote.  I use <a href="http://www.dyndns.com/">DynDNS</a> to make it easy to find my home network while remote. </li>
+<li>A Subversion repository and server. </li>
+<li>A replicated mail repository that mirrors my GMail account into a local mbox that I can read using Mutt.  Great for super-low-bandwidth connections or when, heaven forbid, GMail is down (this seems to happen more and more of late). </li>
+<li>Various Linux services of value, such as an SSH server for remote access, remote desktop, and cron for scheduled jobs.</li>
+</ul>
+<p><em>What could be improved</em>: I'd like to use a more robust certificate exchange with my remote SSH access to the Linux server.  Right now I rely on password strength, and that doesn't give me a lot of comfort.</p>
+<h3>MySQL Backups</h3>
+<p>Given the critical nature of the data I'm storing in MySQL, I need to ensure that I have frequent, trustworthy backups.  For a long time I took care of this manually using mysqldump and a simple email to my GMail account.  To automate this process, I cobbled together a few tools that are working quite nicely together:</p>
+<ul>
+<li><a href="http://pol.spurious.biz/projects/scripting/mysqlblasy.php">MySQLblasy.pl</a> - a simple Perl script that backs up all or some of the databases in a MySQL server, TARs up the resulting SQL files, gzips the TAR file, and uses a sensible file naming approach using a date/time stamp.  It even rotates backups and can keep the last 2 days, 2 weeks, etc. on the local disk. </li>
+<li><a href="http://caspian.dotconf.net/menu/Software/SendEmail/">sendEmail</a> - a BASH script that will send a file attachment via SMTP.  After running the MySQL backup I send the file to my GMail account. </li>
+<li>crontab - I then automate the above by scheduling the backups to run every evening.  They automatically get tagged and archived in GMail, so I can simply check my GMail tag list and see the backups roll in on a daily basis.</li>
+</ul>
+<h3>SVN Backups</h3>
+<p>I keep source code and other key files in Subversion, so that needs to be backed up as well.  This is much less likely to change frequently, so on a weekly basis I run a schedule BASH script that I wrote that does a hot copy of the repository, tar/gzips it, then emails it to my GMail account.</p>
+<p><em>What could be improved</em>: I need to start putting configuration files into Subversion.  As I learned when having to completely rebuild by Linux box last Sunday after a catastrophic drive failure, a lot of time is spent getting Apache, MySQL, Subversion, etc. configured properly.  I also need to automate the deployment of said configuration - maybe Capistrano could help me out?</p>
+<h3>Email Backups</h3>
+<p>I run fetchmail every hour to pull my GMail downto a traditional mbox on the Linux box.  This allows me to use any of a number of tools to read my mail, but this is mostly just for backup purposes. </p>
+<h3>Todo Script</h3>
+<p>This is probably the simplest but one of the most useful hacks I wrote:</p>
+<pre><code>#!/bin/bash  
+echo "Adding action: "$1   
+/home/chris/scripts/sendEmail -f brookscl@gmail.com -t brookscl+Action@gmail.com -u   
+    $1 -m "Todo: "$1 -s smtp.gmail.com -xu brookscl@gmail.com -xp xxxxxx -o tls=yes
+</code></pre>
+<p>When I do my weekly GTD review, I may generate anywhere from 25-30 tasks.  This used to mean sitting in GMail and composing emails (tasks) to myself.  Even with the keyboard shortcuts it was annoyingly tedious.  With this script I can open an SSH session to my Linux box and type away:</p>
+<pre><code>$ todo "Write a blog post on automation"
+
+Adding action: Write a blog post on automation
+
+$ todo "Change the oil in the RAV"
+
+Adding action: Change the oil in the RAV
+</code></pre>
+<p>My Windows box was jealous so I wrote the equivalent batch file, using the very handy blat tool for command line emails:</p>
+<pre><code>@echo off  
+blat -p brookscl -to brookscl+Action@gmail.com -subject %1 -body %1 &gt; NUL
+</code></pre>
+<h3>Future Projects</h3>
+<ul>
+<li>Tighten up the security environment around my Linux box.  Maybe try some penetration test tools to see what vulnerabilities I have, particularly coming over the public internet. </li>
+<li>Integrate my Windows-based file server with my Linux box.  I love using GMail as a backup mechanism, but why not dump the same backups onto that box and incorporate into my rotating backup on the REV disk? </li>
+<li>Teach Jacob (and eventually Matthew) how all of this is done so that he can be a junior Sys Admin.  Every 12 year old should know how to write BASH scripts, right?</li>
+</ul>

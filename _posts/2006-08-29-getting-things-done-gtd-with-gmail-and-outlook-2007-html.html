@@ -1,0 +1,154 @@
+---
+layout: post
+title: Getting Things Done (GTD) with Gmail and Outlook 2007
+date: 2006-08-29 16:21:15.000000000 -06:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Productivity
+tags:
+- productivity
+meta:
+  _edit_last: '1'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1615274053;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:2981;}i:1;a:1:{s:2:"id";i:3028;}i:2;a:1:{s:2:"id";i:2895;}}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2006/08/29/getting-things-done-gtd-with-gmail-and-outlook-2007-html/"
+excerpt: 'Like many others out there I’ve adopted a modified Getting Things Done (GTD)
+  (or check out the 43 Folders getting started guide) approach to personal task and
+  time management.  GTD (and its extensions) addresses a topic area that many other
+  systems ignore – how to deal with the email problem, and I think that’s partly why
+  it has seen such widespread adoption. To date my GTD system has been about as low-tech
+  as you can get – a modified PigPogPDA / Moleskine planner.  I need a paper-based
+  system for its portability, unobtrusiveness, and ability to use in customer environments. 
+  I’m not a big fan of using laptops in client meetings, and as I’m often meeting
+  with high level bank CIO/CTO types, a paper system is both effective and professional. 
+  For a while I used the full-blown system described in the PigPog article, but now
+  that I’m on my third Moleskine I’ve simplified the system quite a bit.  At the front
+  of the notebook I list out “Projects” (high level tasks from which next actions
+  are generated), “Waiting For” (stuff I’m expecting others to accomplish), and “Someday”
+  (wishlist or long-term items).  The rest of the notebook looks like a diary / journal
+  where I take meeting notes and indicate next actions.  A next action is indicated
+  simply with a single line and a box on the left margin that I can eventually check
+  off.  I use a single sticky tab to indicate where the oldest next action is, and
+  the cloth page marker to indicate where my “collection” (i.e., where I write new
+  notes and actions) page is. I’m generally pretty effecient at managing email.  I’m
+  a big fan of Zero Email Bounce (ZEB) and work dilligently to keep my inboxes as
+  close to empty as possible.  The operative word here is “close” – my level of tolerance
+  in Outlook is generally not having to scroll to see the oldest email in Outlook. 
+  Even with this model, I still found myself leaving items un-resolved for too long
+  in my inbox.  Another challenge is the fact that I have two discrete inboxes – work
+  and personal – where I have a wide range of on-going projects.  I also wasn’t very
+  effective at managing “waiting for” and “someday” type tasks in my electronic inboxes. 
+  I could go to the trouble of transcribing items from the electronic inboxes to my
+  paper system, but that’s just too much work and I’m unlikely to stick with such
+  a model. Last weekend I found myself staring at a Gmail inbox with about 30 emails
+  in it, and about 20 of those requiring some action.  Right about the same time I
+  noticed the release of a Firefox plugin for applying GTD to Gmail – GTDGmail.  GTDGmail
+  is a greasemonkey-style mashup on GMail that combines some client-side cleverness
+  with GMail’s powerful labeling and filtering mechanisms to deliver a comprehensive
+  GTD inbox system.  It uses what I think is probably a little-known feature in GMail
+  – you can send emails to username+label@gmail.com to have GMail automatically apply
+  a label to an incoming message or to apply special filtering rules to the message. 
+  This allows me, for example, to set up a special email address in my BlackBerry
+  and easily email new tasks to myself.  As you can (sort of) see in the image below,
+  GTDGMail also adds some UI accelerators to the interface to easily navigate to actions,
+  waiting on, specific projects, etc.  For the past 4 days I’ve been able to keep
+  my GMail inbox at zero emails and feel that I’m much more on top of all of my personal
+  projects (Sunriver Games, football coaching, scouts, etc.).  There has been a ton
+  of chatter lately about using Outlook (especially the beta Outlook 2007) for managing
+  GTD.  I own the Getting Things Done Outlook Add-In, but was eager to abandon it
+  as it added instability to Outlook and I found that the only feature I really used
+  was the “snooze” capability (not a good habit to get into). Melissa Macbeth wrote
+  the article Outlook 2007 and Getting Things Done, Simon Guest expanded on those
+  concepts in his article Implementing Getting Things Done using Outlook 2007, Omar
+  Shahine expanded on those concepts with an improved macro, and finally Scott Hanselman
+  recently published a podcast on A Better Outlook, including GTD add-ons for Outlook.
+  While I like Omar’s macro, it does even more than I need.  I don’t really need to
+  track contexts or projects for my tasks – turning an email into an action and moving
+  it out of my inbox is good enough.  So… I took his macro and changed it a bit:  Rather
+  than turn the email into a true Outlook task, I prefer to keep it as a mail item
+  but call “MarkAsTask” to force it to show up in the To-Do Bar.  Note that even though
+  I use the enumeration olMarkLater, Outlook still wanted to make the task due “today”
+  so I had to do a little hackery to get it right (see the comments in the code).
+  I also want to move it out of my inbox into a sub-folder of the inbox.  This forces
+  me to discover the folder by name, and I don’t think that’s a simple thing to do. 
+  I found a sample function that will traverse down a series of / delimited folders
+  and it seems to work – YMMV. I don’t throw up a dialog to allow me to set a category
+  – as I said, I’m not tracking projects, so just adding the “Action” category is
+  enough. I also turned on two rules:  If I email myself (I’m on the from: and to:
+  line, and it is only sent to me), then I assume it is an action and I mark it and
+  file it as such. If I email someone else and include myself on the CC: line, then
+  I assume it is a “waiting for” and I mark it and file it as such.Public Sub CreateNextAction()     Dim
+  olExp As Outlook.Explorer     Dim myolApp As Outlook.Application     Dim myNamespace
+  As Outlook.NameSpace     Dim myTasks As Outlook.Folder     Dim myFolder As Outlook.Folder     Set
+  myolApp = Outlook.CreateObject("Outlook.Application")     Set myolExp = myolApp.ActiveExplorer     Set
+  myNamespace = myolApp.GetNamespace("MAPI")     ''Uncomment the next line if you
+  prefer to move the email to tasks.     ''Set myTasks = myNamespace.GetDefaultFolder(olFolderTasks)          ''
+  Otherwise, we''ll move it to a sub-folder under the inbox and keep it     '' as
+  a regular mail item     Set myTasks = GetFolder("Mailbox - <your username here>InboxActions")              ''
+  Check for the toolbar button.  I prefer to use X as the hot-key instead     '' of
+  N.     Set myobjCB = myolExp.CommandBars.item("Standard")     On Error GoTo MyError     Set
+  objNA = myobjCB.Controls("Ne&xt Action")     On Error Resume Next          Dim cntSelection
+  As Integer     cntSelection = myolExp.Selection.Count          '' For each selected
+  item, assign the "Action" category,     '' mark it as a task with no due date, and
+  move it to the action     '' folder.  I don''t feel a need to organize tasks by
+  project,     '' so I don''t bother to show a category dialog like Omar does.     For
+  I = 1 To cntSelection         Dim item As MailItem         Set item = myolExp.Selection.item(1)         Set
+  MyTask = item.Move(myTasks)         Subject = MyTask.Subject         Subject = Replace(Subject,
+  "FW: ", "")         Subject = Replace(Subject, "fw: ", "")         Subject = Replace(Subject,
+  "RE: ", "")         Subject = Replace(Subject, "Re: ", "")         MyTask.Categories
+  = "Action"         MyTask.MarkAsTask (olMarkLater)         '' This next line is
+  a hack to make sure it doesn''t get assigned a         '' due date.  Otherwise,
+  olMarkLater sets the due date to tomorrow.         '' This is PROBABLY a bug in
+  Outlook 2007.         MyTask.TaskDueDate = MyTask.TaskCompletedDate         MyTask.Subject
+  = Subject         MyTask.Save     Next          Exit Sub MyError:         Set objNA
+  = myobjCB.Controls.Add(msoControlButton)         objNA.Caption = "Ne&xt Action"         objNA.FaceId
+  = 7264         objNA.Style = msoButtonIconAndCaption         objNA.OnAction = "CreateNextAction"         objNA.BeginGroup
+  = True         objNA.TooltipText = "Create a Next Action task from this E-mail"
+  End Sub   Public Function GetFolder(strFolderPath As String) As MAPIFolder   ''
+  folder path needs to be something like   ''   "Public FoldersAll Public FoldersCompanySales"   Dim
+  objApp As Outlook.Application   Dim objNS As Outlook.NameSpace   Dim colFolders
+  As Outlook.Folders   Dim objFolder As Outlook.MAPIFolder   Dim arrFolders() As String   Dim
+  I As Long   On Error Resume Next    strFolderPath = Replace(strFolderPath, "/",
+  "")   arrFolders() = Split(strFolderPath, "")   Set objApp = CreateObject("Outlook.Application")   Set
+  objNS = objApp.GetNamespace("MAPI")   Set objFolder = objNS.Folders.item(arrFolders(0))   If
+  Not objFolder Is Nothing Then     For I = 1 To UBound(arrFolders)       Set colFolders
+  = objFolder.Folders       Set objFolder = Nothing       Set objFolder = colFolders.item(arrFolders(I))       If
+  objFolder Is Nothing Then         Exit For       End If     Next   End If    Set
+  GetFolder = objFolder   Set colFolders = Nothing   Set objNS = Nothing   Set objApp
+  = Nothing End Function  So far it is working pretty well.  I’ve got ZEB right now
+  in Outlook and a clear handle on my actions, what I’m waiting for, etc.  The potential
+  downside of this overall system is that I have three inboxes – my notebook, GMail,
+  and Outlook.  If I’m sitting around with my BlackBerry and my notebook and an action
+  comes to mind, do I write it down or email it to myself?  Should I periodically
+  scan my notebook and just push items into Outlook or GMail?  I don’t know yet and
+  will report back after a few months to let you know where I’ve landed.'
+---
+<p>Like many others out there I've adopted a modified <a href="http://www.davidco.com/">Getting Things Done (GTD)</a> (or check out the <a href="http://www.43folders.com/2004/09/08/getting-started-with-getting-things-done/">43 Folders getting started guide</a>) approach to personal task and time management.  GTD (and its extensions) addresses a topic area that many other systems ignore - how to deal with the <strong>email problem</strong>, and I think that's partly why it has seen such widespread adoption.</p>
+<p>To date my GTD system has been about as low-tech as you can get - a modified <a href="http://pigpog.com/node/1030#Introduction">PigPogPDA / Moleskine</a> planner.  I need a paper-based system for its portability, unobtrusiveness, and ability to use in customer environments.  I'm not a big fan of using laptops in client meetings, and as I'm often meeting with high level bank CIO/CTO types, a paper system is both effective and professional.  For a while I used the full-blown system described in the PigPog article, but now that I'm on my third <a href="http://www.moleskine.com/eng/default.htm">Moleskine</a> I've simplified the system quite a bit.  At the front of the notebook I list out "Projects" (high level tasks from which next actions are generated), "Waiting For" (stuff I'm expecting others to accomplish), and "Someday" (wishlist or long-term items).  The rest of the notebook looks like a diary / journal where I take meeting notes and indicate next actions.  A next action is indicated simply with a single line and a box on the left margin that I can eventually check off.  I use a single sticky tab to indicate where the oldest next action is, and the cloth page marker to indicate where my "collection" (i.e., where I write new notes and actions) page is.</p>
+<p>I'm generally pretty effecient at managing email.  I'm a big fan of <a href="http://blogs.msdn.com/johnmont/archive/2005/02/24/380064.aspx">Zero Email Bounce (ZEB)</a> and work dilligently to keep my inboxes as close to empty as possible.  The operative word here is "close" - my level of tolerance in Outlook is generally not having to scroll to see the oldest email in Outlook.  Even with this model, I still found myself leaving items un-resolved for too long in my inbox.  Another challenge is the fact that I have two discrete inboxes - work and personal - where I have a wide range of on-going projects.  I also wasn't very effective at managing "waiting for" and "someday" type tasks in my electronic inboxes.  I could go to the trouble of transcribing items from the electronic inboxes to my paper system, but that's just too much work and I'm unlikely to stick with such a model.</p>
+<p>Last weekend I found myself staring at a Gmail inbox with about 30 emails in it, and about 20 of those requiring some action.  Right about the same time I noticed the release of a Firefox plugin for applying <a href="http://www.gtdgmail.com/">GTD to Gmail - GTDGmail</a>.  GTDGmail is a <a href="http://greasemonkey.mozdev.org/">greasemonkey</a>-style mashup on GMail that combines some client-side cleverness with GMail's powerful labeling and filtering mechanisms to deliver a comprehensive GTD inbox system.  It uses what I think is probably a little-known feature in GMail - you can send emails to <a href="mailto:username+label@gmail.com">username+label@gmail.com</a> to have GMail automatically apply a label to an incoming message or to apply special filtering rules to the message.  This allows me, for example, to set up a special email address in my BlackBerry and easily email new tasks to myself.  As you can (sort of) see in the image below, GTDGMail also adds some UI accelerators to the interface to easily navigate to actions, waiting on, specific projects, etc.  For the past 4 days I've been able to keep my GMail inbox at zero emails and feel that I'm much more on top of all of my personal projects (Sunriver Games, football coaching, scouts, etc.).</p>
+<p><a href="http://www.flickr.com/photos/chrisbrooks/228319964/"><img src="{{ site.baseurl }}/assets/2006/08/228319964_beb6039896_o.jpg" alt="GmailGTD" /></a></p>
+<p>There has been a ton of chatter lately about using Outlook (especially the beta Outlook 2007) for managing GTD.  I own the <a href="http://gtdsupport.netcentrics.com/buy/">Getting Things Done Outlook Add-In</a>, but was eager to abandon it as it added instability to Outlook and I found that the only feature I really used was the "snooze" capability (not a good habit to get into). <a href="http://blogs.msdn.com/melissamacbeth/default.aspx">Melissa Macbeth</a> wrote the article <a href="http://blogs.msdn.com/melissamacbeth/archive/2006/07/19/671821.aspx">Outlook 2007 and Getting Things Done</a>, Simon Guest expanded on those concepts in his article <a href="http://blogs.msdn.com/smguest/archive/2006/06/04/617343.aspx">Implementing Getting Things Done using Outlook 2007</a>, <a href="http://www.shahine.com/omar/GettingThingsDoneInOutlook2007.aspx">Omar Shahine expanded on those concepts</a> with an improved macro, and finally <a href="http://www.computerzen.com/">Scott Hanselman</a> recently published a podcast on <a href="http://www.hanselminutes.com/default.aspx?showID=41">A Better Outlook</a>, including GTD add-ons for Outlook.</p>
+<p>While I like Omar's macro, it does even more than I need.  I don't really need to track contexts or projects for my tasks - turning an email into an action and moving it out of my inbox is good enough.  So… I took his macro and changed it a bit:</p>
+<ul>
+<li>Rather than turn the email into a true Outlook task, I prefer to keep it as a mail item but call "MarkAsTask" to force it to show up in the To-Do Bar.  Note that even though I use the enumeration olMarkLater, Outlook still wanted to make the task due "today" so I had to do a little hackery to get it right (see the comments in the code).</li>
+<li>I also want to move it out of my inbox into a sub-folder of the inbox.  This forces me to discover the folder by name, and I don't think that's a simple thing to do.  I found a sample function that will traverse down a series of / delimited folders and it seems to work - YMMV.</li>
+<li>I don't throw up a dialog to allow me to set a category - as I said, I'm not tracking projects, so just adding the "Action" category is enough.</li>
+</ul>
+<p>I also turned on two rules:</p>
+<ul>
+<li>If I email myself (I'm on the from: and to: line, and it is only sent to me), then I assume it is an action and I mark it and file it as such.</li>
+<li>If I email someone else and include myself on the CC: line, then I assume it is a "waiting for" and I mark it and file it as such.</li>
+</ul>
+<p>So far it is working pretty well.  I've got ZEB right now in Outlook and a clear handle on my actions, what I'm waiting for, etc.</p>
+<p><a href="http://www.flickr.com/photos/chrisbrooks/228319951/"><img src="{{ site.baseurl }}/assets/2006/08/228319951_8e62e8b7af.jpg" alt="OutlookGTD" /></a></p>
+<p>The potential downside of this overall system is that I have three inboxes - my notebook, GMail, and Outlook.  If I'm sitting around with my BlackBerry and my notebook and an action comes to mind, do I write it down or email it to myself?  Should I periodically scan my notebook and just push items into Outlook or GMail?  I don't know yet and will report back after a few months to let you know where I've landed.</p>

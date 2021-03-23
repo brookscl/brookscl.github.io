@@ -1,0 +1,93 @@
+---
+layout: post
+title: Strange Bug in ASP.NET Sample SOAP request/response generation
+date: 2003-04-23 22:07:27.000000000 -06:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1607134451;s:7:"payload";a:0:{}}}
+author:
+  login: chris@broadreachonline.com
+  email: chris@chrisbrooks.org
+  display_name: Chris
+  first_name: Chris
+  last_name: Brooks
+permalink: "/blog/2003/04/23/strange-bug-in-aspnet-sample-soap-requestresponse-generation-html/"
+excerpt: '              I encountered a strange bug in how ASP.NET generates sample
+  SOAP request/responses         in .NET 1.1 (this may be the case on 1.0 as well
+  - haven''t tested).  Take a look         at this very simple web service, that includes
+  a header:          using System.Web.Services; using System.Web.Services.Protocols;
+  using System.Xml.Serialization;  namespace TestHeaderWS {       public class MyHeaderType
+  : SoapHeader      {       public System.Xml.XmlElement AnyThing;  }   public class
+  TestHeaderService : System.Web.Services.WebService     {       [WebMethod]         [SoapHeader("MyHeader")]        [return:
+  XmlElementAttribute(Namespace="")]         public string DoSomething() {return null;}          public
+  MyHeaderType MyHeader;       } }               Now point your browser to http://localhost/TestHeaderWS/TestHeaderService.asmx,         select
+  the DoSomething operation, and take a look at the sample SOAP request displayed.          You
+  should see something like this:          <?xml version="1.0" encoding="utf-8"?>
+  <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"                 xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">   <soap:Header>     <MyHeaderType
+  xmlns="http://tempuri.org/">       <AnyThing>         <DoSomethingResult xmlns="">           <string>string</string>           <string>string</string>         </DoSomethingResult>         <string
+  xmlns="">string</string>       </AnyThing>     </MyHeaderType>   </soap:Header>   <soap:Body>     <DoSomething
+  xmlns="http://tempuri.org/" />   </soap:Body> </soap:Envelope>              Notice
+  how messed up the sample response is - for some reason, it is embedding what         actually
+  is the result XML (DoSomethingResult) in the header.  There are two         triggers
+  to cause this bug (fyi, the service appears to actually work properly, so         this
+  isn''t a big deal).                                There needs to be a header with
+  generic XmlElement member.                                There needs to be a return:
+  attribute on the operation that has an empty ("") namespace             qualifier. 
+  Change this namespace to "foo", and you''ll see the proper sample             response. 
+  Strange.                '
+---
+<p>I encountered a strange bug in how ASP.NET generates sample SOAP<br />
+request/responses in .NET 1.1 (this may be the case on 1.0 as well - haven't<br />
+tested). Take a look at this very simple web service, that includes a header:</p>
+<pre><code>using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Xml.Serialization;
+namespace TestHeaderWS {
+    public class MyHeaderType: SoapHeader {
+        public System.Xml.XmlElement AnyThing;
+    }
+    public class TestHeaderService: System.Web.Services.WebService { [WebMethod][SoapHeader("MyHeader")][
+        return: XmlElementAttribute(Namespace = "")] public string DoSomething() {
+            return null;
+        }
+        public MyHeaderType MyHeader;
+    }
+}
+</code></pre>
+<p>Now point your browser to <a href="http://localhost/TestHeaderWS/TestHeaderService.asmx">http://localhost/TestHeaderWS/TestHeaderService.asm<br />
+x</a>, select the<br />
+DoSomething operation, and take a look at the sample SOAP request displayed.<br />
+You should see something like this:</p>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+    &lt;soap:Header&gt;
+        &lt;MyHeaderType xmlns="http://tempuri.org/"&gt;
+            &lt;AnyThing&gt;
+                &lt;DoSomethingResult xmlns=""&gt;
+                    &lt;string&gt;string&lt;/string&gt;
+                    &lt;string&gt;string&lt;/string&gt;
+                &lt;/DoSomethingResult&gt;
+                &lt;string xmlns=""&gt;string&lt;/string&gt;
+            &lt;/AnyThing&gt;
+        &lt;/MyHeaderType&gt;
+    &lt;/soap:Header&gt;
+    &lt;soap:Body&gt;
+        &lt;DoSomething xmlns="http://tempuri.org/"/&gt;
+    &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</code></pre>
+<p>Notice how messed up the sample response is - for some reason, it is embedding<br />
+what actually is the result XML (DoSomethingResult) in the header. There are<br />
+two triggers to cause this bug (fyi, the service appears to actually work<br />
+properly, so this isn't a big deal).</p>
+<ol>
+<li>There needs to be a header with generic XmlElement member. </li>
+<li>There needs to be a return: attribute on the operation that has an empty ("") namespace qualifier. Change this namespace to "foo", and you'll see the proper sample response. Strange.</li>
+</ol>
