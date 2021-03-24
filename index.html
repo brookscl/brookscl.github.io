@@ -1,5 +1,27 @@
 ---
-layout: home
+layout: splash
 author_profile: true
-paginate: 5
+paginate: 4
+title: Welcome
+excerpt: "This is where I share infrequent updates on my travels, my fumblings with productivity tools and methods, and other random musings."
+header:
+  overlay_image: assets/images/banner.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+entries_layout: grid
 ---
+
+<h3 class="archive__subtitle">Blog</h3>
+{% if paginator %}
+{% assign posts = paginator.posts %}
+{% else %}
+{% assign posts = site.posts %}
+{% endif %}
+
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+<div class="entries-{{ entries_layout }}">
+    {% for post in posts %}
+    {% include archive-single.html type=entries_layout %}
+    {% endfor %}
+</div>
+
+{% include paginator.html %}
