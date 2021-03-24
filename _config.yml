@@ -12,13 +12,13 @@
 
 theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
 title                    : "Chris Brooks"
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+subtitle                 : "Games, Technology, and Other Stuff"
 name                     : "Chris Brooks"
 description              : "Games, Technology, and Other Stuff"
 url                      : "https://chrisbrooks.org"
@@ -94,27 +94,27 @@ analytics:
 
 # Site Author
 author:
-  name             : "Chris Brooks"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Games, Technology, and Other Stuff"
+  name             : #
+  avatar           : "/assets/images/chris-small.jpg"
+  bio              : #
   location         : # "Somewhere"
-  email            :
+  email            : # chris@chrisbrooks.org
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: "mailto:chris@chrisbrooks.org"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
+      url: "https://twitter.com/BrooksCaveman"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/brookscl"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -124,13 +124,13 @@ footer:
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url:
+      url: "https://twitter.com/BrooksCaveman"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/brookscl"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
@@ -279,8 +279,9 @@ defaults:
       author_profile: true
       read_time: true
       comments: # true
-      share: true
+      share: false
       related: true
+      classes: wide
   # _pages
   - scope:
       path: ""
@@ -288,3 +289,5 @@ defaults:
     values:
       layout: single
       author_profile: true
+      classes: wide
+

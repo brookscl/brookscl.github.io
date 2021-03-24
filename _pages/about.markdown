@@ -1,5 +1,7 @@
 ---
 title: About Chris Brooks
+layout: single
+author_profile: true
 permalink: /about/
 ---
 
@@ -13,5 +15,3 @@ photography, and travel.
 
 I live at Keuka Lake, NY most of the year and wander the globe when I'm not 
 there.
-
-[About me at about.me](https://about.me/chrisbrooks).
