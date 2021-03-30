@@ -230,6 +230,12 @@ whitelist:
   - jekyll-feed
   - jekyll-include-cache
 
+# Archives
+collections:
+  archives:
+    output: true
+    permalink: /archives/:path/
+
 
 # Archives
 #  Type
@@ -248,8 +254,13 @@ whitelist:
 #  type: liquid
 #  path: /tags/
 # https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
+#jekyll-archives:
+#  enabled:
+#    - year
+#    - month
+#  layouts:
+#    year: year-archive
+#    month: month-archive
 #     - categories
 #     - tags
 #   layouts:
