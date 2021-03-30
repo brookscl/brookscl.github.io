@@ -1,24 +1,21 @@
 ---
-layout: default
+layout: splash
 title: Archive
-entries_layout: grid
 ---
 
 <!-- Begin List Posts
 ================================================== -->
-<section class="recent-posts">
-    <div class="section-title mt-2">
-        <h2>Archive of posts from <span>{{ page.type }} '{{ page.title }}'</span></h2>
-    </div>
-    {% assign entries_layout = page.entries_layout | default: 'list' %}
-    <div class="entries-{{ entries_layout }}">
-        {% for post in site.posts %}
-        {% assign postyear = post.date | date: "%Y" %}
-        {% if postyear == page.year %}
-        {% include archive-single.html %}
-        {% endif %}
 
-        {% endfor %}
+<h3 class="archive__subtitle">Posts from {{ page.title }}</h3>
 
-    </div>
-</section>
+{% assign entries_layout = 'grid' %}
+<div class="entries-grid">
+    {% for post in site.posts %}
+    {% assign postyear = post.date | date: "%Y" %}
+    {% if postyear == page.year %}
+    {% include archive-single.html %}
+    {% endif %}
+
+    {% endfor %}
+
+</div>
