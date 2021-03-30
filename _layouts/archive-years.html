@@ -1,6 +1,7 @@
 ---
 layout: splash
 title: Archive
+entires_layout: grid
 ---
 
 <!-- Begin List Posts
@@ -8,12 +9,13 @@ title: Archive
 
 <h3 class="archive__subtitle">Posts from {{ page.title }}</h3>
 
-{% assign entries_layout = 'grid' %}
-<div class="entries-grid">
+{% assign entries_layout = page.entries_layout | default: 'grid' %}
+<div class="entries-{{ entries_layout }}">
     {% for post in site.posts %}
+    
     {% assign postyear = post.date | date: "%Y" %}
     {% if postyear == page.year %}
-    {% include archive-single.html %}
+    {% include archive-single.html type=entries_layout %}
     {% endif %}
 
     {% endfor %}
