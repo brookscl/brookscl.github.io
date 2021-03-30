@@ -1,6 +1,8 @@
 ---
 ---
 {
+"categories": [],
+"tags": [],
 "years": [
     {% assign yearArray = '' | split: ',' %}
     {% for post in site.posts %}
