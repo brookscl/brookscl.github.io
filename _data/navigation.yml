@@ -1,3 +1,6 @@
 main:
+  - title: "Yearly Archives"
+    url: /yearly-archive/
+
   - title: "About"
     url: /about/
