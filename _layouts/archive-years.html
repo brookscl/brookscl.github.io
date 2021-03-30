@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Archive
+entries_layout: grid
 ---
 
 <!-- Begin List Posts
@@ -9,8 +10,8 @@ title: Archive
     <div class="section-title mt-2">
         <h2>Archive of posts from <span>{{ page.type }} '{{ page.title }}'</span></h2>
     </div>
-    <div class="row listrecent">
-
+    {% assign entries_layout = page.entries_layout | default: 'list' %}
+    <div class="entries-{{ entries_layout }}">
         {% for post in site.posts %}
         {% assign postyear = post.date | date: "%Y" %}
         {% if postyear == page.year %}
