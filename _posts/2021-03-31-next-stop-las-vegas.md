@@ -1,5 +1,5 @@
 ---
-title: Next Stop: Las Vegas
+title: Next Stop – Las Vegas
 type: post
 excerpt_separator: <!--more-->
 ---
