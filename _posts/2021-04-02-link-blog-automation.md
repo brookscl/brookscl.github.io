@@ -1,5 +1,5 @@
 ---
-title:Link Blog Automation
+title: Link Blog Automation
 type: post
 excerpt_separator: <!--more-->
 link: https://danromero.org/jekyll-linklog.html
