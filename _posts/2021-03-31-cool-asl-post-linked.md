@@ -1,6 +1,7 @@
 ---
-title: Cool ASL post (Linked)
+title: Cool ASL post
 type: post
+link: https://boxcarsagainaslblog.blogspot.com/2021/03/our-saturday-game-asl-scenario-111.html
 excerpt_separator: <!--more-->
 ---
 
