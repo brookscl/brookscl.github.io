@@ -1,6 +1,7 @@
 ---
 title: Link Blog Automation
 type: post
+date: 2021-04-02 12:32:39.000 -0600
 excerpt_separator: <!--more-->
 link: https://danromero.org/jekyll-linklog.html
 ---

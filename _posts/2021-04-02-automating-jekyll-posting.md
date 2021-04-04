@@ -1,6 +1,7 @@
 ---
 title: Automating Jekyll Posting
 type: post
+date: 2021-04-02 08:32:39.000 -0600
 excerpt_separator: <!--more-->
 link: https://www.averyvine.com/blog/programming/2019/10/04/publishing-to-jekyll-from-ipad-with-shortcuts-and-working-copy
 ---
