@@ -4,9 +4,8 @@ type: post
 excerpt_separator: <!--more-->
 ---
 
-![chris-and-julie-on-angels-landing.jpeg]({{ "
-assets/2021-04-04-zion-angels-landing-and-west-rim/chris-and-julie-on-angels-landing.jpeg"
-| absolute_url }})
+![chris-and-julie-on-angels-landing.jpeg]({{ 
+"assets/2021-04-04-zion-angels-landing-and-west-rim/chris-and-julie-on-angels-landing.jpeg" | absolute_url }})
 
 We got an early start into Zion this morning and were thankful for it. My fears
 about a busy Easter Sunday proved true, and I feel so sorry for the folks that
@@ -23,9 +22,8 @@ the double busses, having removed a lot of seats to allow for social distancing.
 No worries though as we were first on the second bus and started on the
 trailhead at 7:30am.
 
-![julie-ready-to-climb.jpeg]({{ "
-assets/2021-04-04-zion-angels-landing-and-west-rim/julie-ready-to-climb.jpeg" |
-absolute_url }})
+![julie-ready-to-climb.jpeg]({{ 
+"assets/2021-04-04-zion-angels-landing-and-west-rim/julie-ready-to-climb.jpeg" | absolute_url }})
 
 The climb was still rough but the weather was perfect. It was windy too, but
 surprisingly not at the peak but mainly on the saddle / neck you cross just as
@@ -33,18 +31,16 @@ you are heading to the final ascent. We saw a lot of folks bailing out at
 various stages of the climb. It isn't terribly technical or difficult, but it
 can be harrowing at times and I can't imagine doing it with a fear of heights.
 
-![julie-on-angels-landing.jpeg]({{ "
-assets/2021-04-04-zion-angels-landing-and-west-rim/julie-on-angels-landing.jpeg"
-| absolute_url }})
+![julie-on-angels-landing.jpeg]({{ 
+"assets/2021-04-04-zion-angels-landing-and-west-rim/julie-on-angels-landing.jpeg" | absolute_url }})
 
 We had better weather this time (than three years ago): blue skies with just a
 few white clouds, and perfect temperature at the summit. Interesting note: Julie
 wondered what time we made the peak last time, and I checked my photo records
 and we were within one minute of our prior ascent.
 
-![indian-paintbrush.jpeg]({{ "
-assets/2021-04-04-zion-angels-landing-and-west-rim/indian-paintbrush.jpeg" |
-absolute_url }})
+![indian-paintbrush.jpeg]({{ "assets/2021-04-04-zion-angels-landing-and-west
+-rim/indian-paintbrush.jpeg" | absolute_url }})
 
 Not content with just climbing Angels Landing, we ventured further up the west
 rim trail for another 3 or 4 miles to climb to the top of the west rim. Total
@@ -53,9 +49,8 @@ more spread out over the miles. The relative peace and quiet was worth it. Saw
 quite a few birds, more lizards, and the Indian Paintbrush is just starting to
 bloom. We hope to see a lot more wildflowers in the coming weeks.
 
-![squirrel-on-a-log.jpeg]({{ "
-assets/2021-04-04-zion-angels-landing-and-west-rim/squirrel-on-a-log.jpeg" |
-absolute_url }})
+![squirrel-on-a-log.jpeg]({{ "assets/2021-04-04-zion-angels-landing-and-west
+-rim/squirrel-on-a-log.jpeg" | absolute_url }})
 
 We had a critter friend great us on the way back down. Also...
 a [Black-Throated Gray Warbler](https://www.audubon.org/field-guide/bird/black-throated-gray-warbler)
