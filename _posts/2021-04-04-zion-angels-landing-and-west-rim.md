@@ -9,6 +9,8 @@ excerpt_separator: <!--more-->
 
 We got an early start into Zion this morning and were thankful for it. My fears about a busy Easter Sunday proved true, and I feel so sorry for the folks that showed up in the afternoon without a bus ticket hoping for a last minute opening. Somewhat sorry, that is. Why put a day at risk like that? Do your research. Go elsewhere if you don't have an entry ticket. I've heard there are some other nice places here in southern Utah.
 
+[[more]]
+
 Even though we arrived about 6:45am for our 7am bus, there was enough of a line that we didn't make the first bus duo. They are only seating about 33 folks on the double busses, having removed a lot of seats to allow for social distancing. No worries though as we were first on the second bus and started on the trailhead at 7:30am.
 
 
