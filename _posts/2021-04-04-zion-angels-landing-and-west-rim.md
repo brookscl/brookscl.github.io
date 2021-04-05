@@ -1,5 +1,5 @@
 ---
-title: Zion: Angels Landing and West Rim
+title: Zion–Angels Landing and West Rim
 type: post
 excerpt_separator: <!--more-->
 ---
