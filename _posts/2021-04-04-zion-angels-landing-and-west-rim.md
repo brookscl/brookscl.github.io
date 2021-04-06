@@ -1,7 +1,8 @@
 ---
-title: Zion–Angels Landing and West Rim
+title: "Zion: Angels Landing and West Rim"
 type: post
 excerpt_separator: <!--more-->
+permalink: /zion-angels-landing-and-west-rim/
 ---
 
 ![chris-and-julie-on-angels-landing.jpeg]({{ 
