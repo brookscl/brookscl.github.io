@@ -10,7 +10,7 @@ layout: none
     <id>{{ site.url }}/feed.xml</id>
     <title type="html">{{ site.title | xml_escape }}</title>
     <subtitle>{{ site.description | xml_escape }}</subtitle>
-    {% for post in site.posts %}
+    {% for post in site.posts limit:15 %}
     <entry>
         {% if post.link %}<title>&#128206; {{ post.title | xml_escape }}</title>{% else %}<title>{{ post.title | xml_escape }}</title>{% endif %}
         {% if post.link %}<link href="{{ post.link }}" rel="alternate" type="text/html" title="{{ post.title }}"/>{% else %}<link href="{{ site.url }}{{ post.url }}" rel="alternate" type="text/html" title="{{ post.title }}"/>{% endif %}
