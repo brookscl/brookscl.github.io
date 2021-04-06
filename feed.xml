@@ -18,8 +18,8 @@ layout: none
         <published>{{ post.date | date_to_xmlschema }}</published>
         <updated>{{ post.date | date_to_xmlschema " }}</updated>
         {% if post.link %}<id>{{ post.link }}</id>{% else %}<id>{{ site.url }}{{ post.url }}</id>{% endif %}
-        <author><name>{{ post.author }}</name></author>
-        <summary type="html">{{ post.description }}</summary>
+        <author><name>Chris Brooks</name></author>
+        <summary type="html">{{ post.excerpt }}</summary>
     </entry>
     {% endfor %}
 </feed>

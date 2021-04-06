@@ -3,6 +3,7 @@ title: "Zion: Angels Landing and West Rim"
 type: post
 excerpt_separator: <!--more-->
 permalink: /zion-angels-landing-and-west-rim/
+date: 2021-04-04 20:53:41.000000000 -07:00
 ---
 
 ![chris-and-julie-on-angels-landing.jpeg]({{ 
