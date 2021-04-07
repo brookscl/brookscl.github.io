@@ -2,6 +2,7 @@
 title: Next Stop – Las Vegas
 type: post
 excerpt_separator: <!--more-->
+date: 2021-03-31 12:08:43.000000000 -07:00
 ---
 
 ![the-rooster.jpeg]({{ "assets/next-stop-las-vegas/the-rooster.jpeg" | absolute_url }})
