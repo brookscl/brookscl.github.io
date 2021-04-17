@@ -26,7 +26,7 @@ The canyon itself was not dissimilar from canyons we've explored in other parts 
 ![canyon-wall-with-rock-art-below.jpeg]({{ "assets/2021-04-16-canyonlands-rock-art-in-horseshoe-canyon/canyon-wall-with-rock-art-below.jpeg" | absolute_url }})
 
 
-There are at least four distinct sites to visit in this part of the canyon. The scale is large: large canyon walls, large galleries. The style is *Barrier Creek* and is supposedly a benchmark of quality for all sites in the Colorado plateau. The photo above is meant to show the size of the canyon walls relative to the panel sizes. Can you find the art here? Look way down just above the red band.
+There are at least four distinct sites to visit in this part of the canyon. The scale is large: large canyon walls, large galleries. The style is [*Barrier Canyon*](https://en.wikipedia.org/wiki/Barrier_Canyon_Style) and is supposedly a benchmark of quality for all sites in the Colorado plateau. The photo above is meant to show the size of the canyon walls relative to the panel sizes. Can you find the art here? Look way down just above the red band.
 
 
 ![pictograph-human-depictions.jpeg]({{ "assets/2021-04-16-canyonlands-rock-art-in-horseshoe-canyon/pictograph-human-depictions.jpeg" | absolute_url }})
