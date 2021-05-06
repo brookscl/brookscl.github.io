@@ -60,13 +60,13 @@ We saw some very cool critters in our exploration of [Horseshoe Canyon](https://
 The western parts of Canyonlands apparently had an invasion of wild burros sometime in the past six years. I guess the park service isn't thrilled about it, but we loved our multiple encounters with groups as we hiked through the canyon.
 
 
-![Prairie dog]({{ "assets/2021-05-06-critters-of-southern-utah/prairie-dog.jpg" | absolute_url }})
+![Prairie dog]({{ "assets/2021-05-06-critters-of-southern-utah/prairie-dog.jpg" | absolute_url }}){:width="100px"}
 
 
 Up on the plains and mesas as we would wander around looking for rock art, if we paid attention while driving off-road we would often see prairie dogs scanning their surroundings.
 
 
-![Bunny rabbit]({{ "assets/2021-05-06-critters-of-southern-utah/bunny-rabbit.jpg" | absolute_url }}){:width="100px"}
+![Bunny rabbit]({{ "assets/2021-05-06-critters-of-southern-utah/bunny-rabbit.jpg" | absolute_url }})
 
 
 Rabbits were common too.
