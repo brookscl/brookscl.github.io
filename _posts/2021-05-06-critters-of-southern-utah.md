@@ -66,7 +66,7 @@ The western parts of Canyonlands apparently had an invasion of wild burros somet
 Up on the plains and mesas as we would wander around looking for rock art, if we paid attention while driving off-road we would often see prairie dogs scanning their surroundings.
 
 
-![Bunny rabbit]({{ "assets/2021-05-06-critters-of-southern-utah/bunny-rabbit.jpg" | absolute_url }})
+![Bunny rabbit]({{ "assets/2021-05-06-critters-of-southern-utah/bunny-rabbit.jpg" | absolute_url }}){:width="100px"}
 
 
 Rabbits were common too.
