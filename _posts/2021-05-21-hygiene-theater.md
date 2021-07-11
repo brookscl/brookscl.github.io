@@ -1,7 +1,7 @@
 --- 
 title: "Hygiene Theater"
 type: post
-date: 2021-10-21 07:10:50 -04:00
+date: 2021-05-21 07:10:50 -04:00
 excerpt_separator: <!--more-->
 permalink: "/blog/2021/05/21/hygiene-theater"
 link: https://www.theatlantic.com/ideas/archive/2021/04/end-hygiene-theater/618576/
