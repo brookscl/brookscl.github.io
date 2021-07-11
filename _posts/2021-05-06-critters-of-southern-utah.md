@@ -6,8 +6,6 @@ excerpt_separator: <!--more-->
 permalink: "/blog/2021/05/06/critters-of-southern-utah"
 ---
 
-
-
 ![Burros in the canyon]({{ "assets/2021-05-06-critters-of-southern-utah/burros-in-the-canyon.jpg" | absolute_url }})
 
 
