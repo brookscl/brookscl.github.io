@@ -26,4 +26,4 @@ Jim and family were able to stay for a few extra days so we had an open slot for
 
 ---
 
-We are in the midst of "wave 3" of visitors now, but I'm looking forward most to Jacob and Kaitlin arriving next weekend. That means golf, water sports, beer tasting, and I'm sure lots of gaming.
+We are in the midst of "wave 3" of visitors now, but now I'm looking forward most to Jacob and Kaitlin arriving next weekend. That means golf, water sports, beer tasting, and I'm sure lots of gaming. And our final guests will be Matthew and Lauren, a perfect bookend on our post-COVID lake summer.
